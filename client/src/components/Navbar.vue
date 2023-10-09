@@ -24,32 +24,26 @@ const isActive = ref(false);
     <div class="navbar-start">
         
         <RouterLink class="navbar-item" to="/">My Activity</RouterLink>
-        <RouterLink class="navbar-item" to="/about">About</RouterLink>
+        <RouterLink class="navbar-item" to="/statistics">Statistics</RouterLink>
+        <RouterLink class="navbar-item" to="/friendsactivity">Friends Activity</RouterLink>
+        <RouterLink class="navbar-item" to="/peoplesearch">People Search</RouterLink>
+      
       
 
-      <a class="navbar-item">
-        Documentation
-      </a>
 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
-          More
+          Admin
         </a>
 
         <div class="navbar-dropdown">
           <a class="navbar-item">
-            About
+            <RouterLink class="navbar-item" to="/Users">Users</RouterLink>
+      
           </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
+          
+        
+         
         </div>
       </div>
     </div>
