@@ -1,0 +1,30 @@
+{
+  "name": "exercise-tracker",
+  "version": "1.0.0",
+  "description": "web-programming",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon --watch ./server server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SomeoneIUsedToKnow/Web-programming.git"
+  },
+  "dependencies": {
+    "express": "4.18.2",
+    "bulma": "^0.9.4"
+  },
+  "devDependencies": {
+    "nodemon": "3.0.1"
+  },
+  "keywords": [
+    "webprogramming"
+  ],
+  "author": "joe T",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SomeoneIUsedToKnow/Web-programming/issues"
+  },
+  "homepage": "https://github.com/SomeoneIUsedToKnow/Web-programming#readme"
+}
