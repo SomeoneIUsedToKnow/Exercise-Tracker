@@ -1,29 +1,78 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router';
+import {ref} from 'vue';
+const isActive = ref(false);
 
+//READ HIS CODE FOR NAVBAR THERE ARE MISSED ITEMS
 </script>
 
 <template>
- <nav  class="navbar" style="background-color: aqua; max-height: 60px; " role="navigation" aria-label="main navigation"  >
-    <div class="navbar-brand">
-      <a class="navbar-item" href="#About.htm" style="background-color: white;">
-        <img style="min-height: 50px;" src="data:image/jpeg;base64,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" width="100" height="400" >
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="28" height="112" />
+    </a>
+
+    <a role="button" class="navbar-burger" @click="isActive = !isActive" :class="{'is-active' : isActive}" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu" :class="{'is-active': isActive}">
+    <div class="navbar-start">
+        
+        <RouterLink class="navbar-item" to="/">My Activity</RouterLink>
+        <RouterLink class="navbar-item" to="/about">About</RouterLink>
       
+
+      <a class="navbar-item">
+        Documentation
       </a>
-      
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            About
+          </a>
+          <a class="navbar-item">
+            Jobs
+          </a>
+          <a class="navbar-item">
+            Contact
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item">
+            Report an issue
+          </a>
+        </div>
+      </div>
     </div>
 
-       <div class="navbar-end" style="padding-right: 40px;">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary" href="SignUp.htm" style="margin-right: 30px; height: 50px;">
-              <strong>Sign up</strong>
-            </a>
-            <a class="button is-light" href="Login.htm" style="height: 50px;">
-              Log in
-            </a>   
-          </div>
-   </div>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary">
+            <strong>Sign up</strong>
+          </a>
+          <a class="button is-light">
+            Log in
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </nav>
-  </template>
-  
+</template>
+
+<style scoped>
+.router-link-active{
+    font-weight: bold;
+    
+}
+</style>
