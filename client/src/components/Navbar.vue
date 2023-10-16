@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LoginBadge from './LoginBadge.vue';
 import { RouterLink } from 'vue-router';
 import {ref} from 'vue';
 const isActive = ref(false);
@@ -9,9 +10,10 @@ const isActive = ref(false);
 <template>
     <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
+    <RouterLink class="navbar-item" to="/">
       <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="28" height="112" />
-    </a>
+       </RouterLink>
+    
 
     <a role="button" class="navbar-burger" @click="isActive = !isActive" :class="{'is-active' : isActive}" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
@@ -23,7 +25,7 @@ const isActive = ref(false);
   <div id="navbarBasicExample" class="navbar-menu" :class="{'is-active': isActive}">
     <div class="navbar-start">
         
-        <RouterLink class="navbar-item" to="/">My Activity</RouterLink>
+        <RouterLink class="navbar-item" to="/myactivity">My Activity</RouterLink>
         <RouterLink class="navbar-item" to="/statistics">Statistics</RouterLink>
         <RouterLink class="navbar-item" to="/friendsactivity">Friends Activity</RouterLink>
         <RouterLink class="navbar-item" to="/peoplesearch">People Search</RouterLink>
@@ -41,23 +43,13 @@ const isActive = ref(false);
             <RouterLink class="navbar-item" to="/Users">Users</RouterLink>
       
           </a>
-          
-        
-         
         </div>
       </div>
     </div>
 
     <div class="navbar-end">
       <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">
-            Log in
-          </a>
-        </div>
+        <LoginBadge />
       </div>
     </div>
   </div>
@@ -69,4 +61,12 @@ const isActive = ref(false);
     font-weight: bold;
     
 }
+.navbar{
+  background-color:rgb(64, 224, 160);
+}
+.navbar-item:hover{
+  background-color: rgb(55, 197, 140);
+}
+
+
 </style>

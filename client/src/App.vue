@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import navbar from './components/navbar.vue';
-
+import { ref } from 'vue';
+/*
+const personObj = {
+  haircolor:"blue"
+};
+const person = ref(personObj); */
 </script>
 
 <template>
