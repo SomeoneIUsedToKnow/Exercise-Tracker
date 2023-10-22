@@ -1,17 +1,23 @@
+<script setup lang="ts">
+import  { getAverageStats, AverageDistance, AverageSpeed,AverageTime} from '@/Model/Exercise.ts';
+
+</script>
+
+
 <template>
   <div class="box has-text-success summary">
     <h2 class="title">Overall Stats</h2>
     <div class="columns is-multiline">
       <div class="column is-half">
-        <h3 class="value">Distance: 4 miles</h3>
+        <h3 class="value">Distance:{{AverageDistance}} miles</h3>
         <caption class="caption">Average Distance Ran</caption>
       </div>
       <div class="column is-half">
-        <h3 class="value">5 min</h3>
+        <h3 class="value">{{ AverageTime }}</h3>
         <caption class="caption">Average Duration</caption>
       </div>
       <div  class="column is-half">
-        <h3 class="value">2 mph</h3>
+        <h3 class="value">{{AverageSpeed}}</h3>
         <caption class="caption">Average Pace</caption>
       </div>
       <div class="column is-half">

@@ -1,16 +1,45 @@
 <template>
-    <div class="about">
-      <h1>This is an about page</h1>
+  <main class="columns is-multiline is-centered">
+    <div class="column is-full">
+      <h1 class="title" >Friend's Activities</h1>
+      
     </div>
-  </template>
-  
-  <style>
-  @media (min-width: 1024px) {
-    .about {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-    }
-  }
-  </style>
-  
+
+    <div class="column is-half-desktop is-centered">
+      <div class="panel is-primary">
+        <p class="panel-heading">
+          Friend's Runs:
+        </p>
+       
+        <label class="box">
+          User@name.com
+          <p>Ran For: min   
+             <br>Distance Ran: miles
+             <br>Latitude:
+             <br>Longitude: 
+             <br>Date: 
+              <br>Average Speed: miles per hour</p>
+        </label>
+        <label class="box">
+          User@name.com
+          <p>Ran For: min   
+             <br>Distance Ran: miles
+             <br>Latitude:
+             <br>Longitude: 
+             <br>Date: 
+              <br>Average Speed: miles per hour</p>
+        </label>
+        <label class="box">
+          User@name.com
+          <p>Ran For: min   
+             <br>Distance Ran: miles
+             <br>Latitude:
+             <br>Longitude: 
+             <br>Date: 
+              <br>Average Speed: miles per hour</p>
+        </label>
+       
+      </div>
+    </div>
+  </main>
+</template>

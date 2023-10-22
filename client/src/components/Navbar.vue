@@ -40,7 +40,7 @@ const isActive = ref(false);
 
         <div class="navbar-dropdown">
           <a class="navbar-item">
-            <RouterLink class="navbar-item" to="/Users">Users</RouterLink>
+            <RouterLink class="navbar-item" to="/users">Users</RouterLink>
       
           </a>
         </div>

@@ -1,40 +1,70 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-
+import { reactive } from 'vue';
+import { setAverage, type Exercise} from '@/Model/Exercise.ts';
+ 
+ 
   const newTaskName = ref('');
   const tasks = ref([] as { id?: number, text: string, completed: boolean }[] );
 
   const newExerciseDistance = ref('');
   const newExerciseTime = ref('');
-  const newExerciseLocation = ref('');
+  
   const newExerciseSpeed = ref('');
   const newExerciseDate = ref('');
-  const exercises = ref([] as {Distance: string, location: string, speed: string, date: string, time: string}[]);
+  const newExerciseLat = ref('');
+  const newExerciseLong = ref('');
+  const newExerciseId = ref('');
+  //const exercises = ref([] as {Distance: number, Lat: string, Long: string, speed: number, date: string, time: string, id: string}[]);
+  
+  
+  const exercises = ref([] as Exercise[])
+ 
  
 
-  const tabList = ['Current', 'Completed', 'All'];
-  const tabState = ref('Current');
 
-  function addTask() {
-    tasks.value.push({ text: newTaskName.value, completed: false });
-    newTaskName.value = '';
-    
-  };
+  function Delete(id: number): void {
+    for(let i=0; i<exercises.value.length; i++){
+   if (exercises.value[i].id == id){
+   exercises.value.splice(i);
+   }
+}
+  
+}
+
+      
+
 
   function addExercise() {
-    exercises.value.push({ Distance: newExerciseDistance.value , location: newExerciseLocation.value, speed: newExerciseSpeed.value, date: newExerciseDate.value, time: newExerciseTime.value});
+
+    let id = Number(newExerciseId.value) + 1;
+    let distance = Number(newExerciseDistance.value);
+    let time = Number(newExerciseTime.value);
+    let timeInHours = time/60;
+    let avgSpeed = distance / timeInHours;
+   
+    let exercise: Exercise;
+    exercise = {id: id,
+    Distance: distance, 
+    Lat: newExerciseLat.value, 
+    Long: newExerciseLong.value, 
+    speed: avgSpeed, 
+    date: newExerciseDate.value, 
+    time: String(time)
+  };
+    exercises.value.push(exercise);
     newExerciseDate.value = '';
     newExerciseDistance.value = '';
-    newExerciseLocation.value = '';
+   newExerciseLong.value = '';
+   newExerciseLat.value = '';
     newExerciseSpeed.value = '';
+    newExerciseTime.value = '';
     
   };
 
-  const shouldDisplay = (task: { id?: number, text: string, completed: boolean }) =>
-    (tabState.value == 'Current' && !task.completed) ||
-    (tabState.value == 'Completed' && task.completed) ||
-    tabState.value == 'All';
-
+ 
+  
+ 
 
 </script>
 
@@ -48,36 +78,52 @@ import { ref } from 'vue';
     <div class="column is-half-desktop is-centered">
       <div class="panel is-primary">
         <p class="panel-heading">
-          To Do
+          My Runs
         </p>
         <div class="panel-block">
-          <button class="button is-link is-outlined is-fullwidth" @click="addTask">
-            Reset all filters
+          <button class="button is-link is-outlined is-fullwidth" @click="addExercise">
+            Add New Run
           </button>
         </div>
         <div class="panel-block">
           <p class="control has-icons-left">
-            <input  class="input" type="text" placeholder="What do you want to do"
-                    @keypress.enter="addTask" v-model="newTaskName" >
+            <input  class="input" type="text" placeholder="How long did you run?"
+                   v-model="newExerciseTime" >
             <span class="icon is-left">
               <i class="fas fa-plus" aria-hidden="true"></i>
             </span>
-            <input  class="input" type="text" placeholder="What do you want to do"
-                    @keypress.enter="addTask" v-model="newINput" >
+            <input  class="input" type="text" placeholder="How far did you run?"
+                   v-model="newExerciseDistance" >
+            <span class="icon is-left">
+              <i class="fas fa-plus" aria-hidden="true"></i>
+            </span>
+            <input  class="input" type="text" placeholder="When did you run?"
+                    v-model="newExerciseDate" >
+            <span class="icon is-left">
+              <i class="fas fa-plus" aria-hidden="true"></i>
+            </span>
+            <input  class="input" type="text" placeholder="Latitude of where you ran?"
+                    v-model="newExerciseLat" >
+            <span class="icon is-left">
+              <i class="fas fa-plus" aria-hidden="true"></i>
+            </span>
+            <input  class="input" type="text" placeholder="Longitude of where you ran?"
+                    v-model="newExerciseLong" >
             <span class="icon is-left">
               <i class="fas fa-plus" aria-hidden="true"></i>
             </span>
           </p>
         </div>
-        <p class="panel-tabs">
-          <a v-for="tab in tabList" :class="{ 'is-active': tabState == tab}" @click.prevent="tabState = tab">{{ tab }}</a>
-        </p>
-        <label class="panel-block" v-for="exercise in exercises">
+        
+        <label class="box" v-for="variable in exercises">
          
-          <p>Ran For: {{ exercise.time }}min   
-             <br>Distance: {{exercise.Distance}}
-             <br>Location: {{exercise.location}}
-             <br>Date: {{ exercise.location }}</p>
+          <p>Ran For: {{ variable.time }}min   
+             <br>Distance Ran: {{variable.Distance}}miles
+             <br>Latitude: {{variable.Lat}}
+             <br>Longitude: {{variable.Long}}
+             <br>Date: {{ variable.date }}
+              <br>Average Speed: {{ variable.speed }} miles per hour</p>
+              <button  @click="Delete(variable.id)" >Delete</button>
         </label>
        
       </div>
