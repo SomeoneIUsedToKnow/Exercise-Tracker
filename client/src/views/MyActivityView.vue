@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import type { Exercise} from '@/Model/Exercise';
+import type { Exercise} from '@/model/exercise';
  
  
   const newTaskName = ref('');
