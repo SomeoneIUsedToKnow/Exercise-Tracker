@@ -51,4 +51,3 @@
   text-align: center;
 }
 </style>
-@/model/Exercise@/Model/Exercise

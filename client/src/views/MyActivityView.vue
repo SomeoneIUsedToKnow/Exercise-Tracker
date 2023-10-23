@@ -129,4 +129,4 @@ import type { Exercise} from '@/Model/Exercise';
       </div>
     </div>
   </main>
-</template>@/model/Exercise@/Model/Exercise
+</template>
