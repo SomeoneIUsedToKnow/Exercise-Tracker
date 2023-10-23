@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { getSession, login } from '@/model/session'
+  import { getSession, login } from '@/Model/Session'
 
   const session = getSession()
 
@@ -31,4 +31,4 @@
 
 <style scoped>
 
-</style>
+</style>@/model/session

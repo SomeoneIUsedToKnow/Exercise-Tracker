@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import  { getAverageStats, AverageDistance, AverageSpeed,AverageTime} from '@/Model/Exercise.ts';
+
 
 </script>
 
@@ -9,15 +9,15 @@ import  { getAverageStats, AverageDistance, AverageSpeed,AverageTime} from '@/Mo
     <h2 class="title">Overall Stats</h2>
     <div class="columns is-multiline">
       <div class="column is-half">
-        <h3 class="value">Distance:{{AverageDistance}} miles</h3>
+        <h3 class="value">Distance: 20miles</h3>
         <caption class="caption">Average Distance Ran</caption>
       </div>
       <div class="column is-half">
-        <h3 class="value">{{ AverageTime }}</h3>
+        <h3 class="value">10 min</h3>
         <caption class="caption">Average Duration</caption>
       </div>
       <div  class="column is-half">
-        <h3 class="value">{{AverageSpeed}}</h3>
+        <h3 class="value">2 mph</h3>
         <caption class="caption">Average Pace</caption>
       </div>
       <div class="column is-half">
@@ -51,3 +51,4 @@ import  { getAverageStats, AverageDistance, AverageSpeed,AverageTime} from '@/Mo
   text-align: center;
 }
 </style>
+@/model/Exercise@/Model/Exercise

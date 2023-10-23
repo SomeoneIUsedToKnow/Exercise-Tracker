@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { reactive } from 'vue';
-import { setAverage, type Exercise} from '@/Model/Exercise.ts';
+
+import type { Exercise} from '@/Model/Exercise';
  
  
   const newTaskName = ref('');
@@ -129,4 +129,4 @@ import { setAverage, type Exercise} from '@/Model/Exercise.ts';
       </div>
     </div>
   </main>
-</template>
+</template>@/model/Exercise@/Model/Exercise
