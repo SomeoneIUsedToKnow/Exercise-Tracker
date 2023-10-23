@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { getSession, login } from '@/model/session.js'
+  import { getSession, login } from '@/model/session'
 
   const session = getSession()
 
