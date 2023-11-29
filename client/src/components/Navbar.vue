@@ -2,9 +2,11 @@
 import LoginBadge from './LoginBadge.vue';
 import { RouterLink } from 'vue-router';
 import {ref} from 'vue';
+import { getSession } from '@/model/session';
+
+const session = getSession();
 const isActive = ref(false);
 
-//READ HIS CODE FOR NAVBAR THERE ARE MISSED ITEMS
 </script>
 
 <template>
@@ -32,18 +34,18 @@ const isActive = ref(false);
       
       
 
-
-      <div class="navbar-item has-dropdown is-hoverable">
+       
+      <div class="navbar-item has-dropdown is-hoverable" v-if="session.user?.isAdmin">
         <a class="navbar-link">
           Admin
         </a>
-
+       
         <div class="navbar-dropdown">
           <a class="navbar-item">
             <RouterLink class="navbar-item" to="/users">Users</RouterLink>
-      
+
           </a>
-        </div>
+      </div>
       </div>
     </div>
 

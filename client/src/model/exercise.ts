@@ -1,4 +1,7 @@
 import { reactive } from "vue";
+import type { User } from "./users";
+
+
 const session = reactive({
     exercise: null as Exercise | null,
   })
@@ -19,19 +22,24 @@ export interface Exercise {
   export var AverageSpeed: number;
   export var AverageTime: number;
 
-  export function setAverage(exercises: Exercise[]): void {
+  export function AddExercise(user: User, exercise: Exercise) : void{
 
-  var  totalDistance = 0;
-  var totalSpeed = 0
-  var totaltime = 0;
-    for(let i=0; i<exercises.length; i++){
-         totalDistance= + exercises[i].Distance;
-         totalSpeed = + exercises[i].speed;
-         totaltime = + exercises[i].time;
-
+    user.workouts.push(exercise);
+  
   }
-   AverageDistance = Number(totalDistance) / exercises.length;
-   AverageSpeed = Number(totalSpeed) / exercises.length;
-   AverageTime = Number(totaltime) / exercises.length;
 
-}
+
+  export function GetExercises(user: User) : Exercise[] {
+
+
+    return user.workouts;
+  }
+  
+  export function DeleteExercise(id: number, user: User): void {
+    for(let i=0; i<user.workouts.length; i++){
+   if (user.workouts[i].id == id){
+   user.workouts.splice(i);
+   }
+  }
+  
+  }

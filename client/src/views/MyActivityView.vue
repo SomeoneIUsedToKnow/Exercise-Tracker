@@ -1,8 +1,42 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-
+import { AddExercise, DeleteExercise,GetExercises } from '@/model/exercise';
+import { getSession } from '@/model/session';
 import type { Exercise} from '@/model/exercise';
+import type { User } from '@/model/users';
  
+const session = getSession()
+
+function addToWorkout(exercise: Exercise): void{
+
+  
+  let id = Number(newExerciseId.value) + 1;
+    let distance = Number(newExerciseDistance.value);
+    let time = Number(newExerciseTime.value);
+    let timeInHours = time/60;
+    let avgSpeed = distance / timeInHours;
+ 
+
+    exercise.Distance = distance;
+    exercise.time = String(time);
+    exercise.speed = avgSpeed;
+    exercise.id = id;
+    exercise.Lat = newExerciseLat.value;
+    exercise.Long = newExerciseLong.value;
+    exercise.date = newExerciseLong.value;
+   
+    
+   
+ 
+
+    newExerciseDate.value = '';
+    newExerciseDistance.value = '';
+   newExerciseLong.value = '';
+   newExerciseLat.value = '';
+    newExerciseSpeed.value = '';
+    newExerciseTime.value = '';
+
+}
  
   const newTaskName = ref('');
   const tasks = ref([] as { id?: number, text: string, completed: boolean }[] );

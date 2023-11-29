@@ -1,30 +1,24 @@
 {
-  "name": "exercise-tracker",
+  "name": "fall-2023",
   "version": "1.0.0",
-  "description": "web-programming",
-  "main": "index.js",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+
   "scripts": {
+    "build": "npm i --production && cd client && npm i && npm run build",
     "start": "node server/index.js",
     "dev": "nodemon --watch ./server server/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SomeoneIUsedToKnow/Web-programming.git"
-  },
   "dependencies": {
-    "express": "4.18.2",
-    "bulma": "^0.9.4"
+    "express": "^4.17.20",
+    "dotenv": "^16.3.1",
+    "mongodb": "^6.2.0"
   },
   "devDependencies": {
-    "nodemon": "3.0.1"
-  },
-  "keywords": [
-    "webprogramming"
-  ],
-  "author": "joe T",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SomeoneIUsedToKnow/Web-programming/issues"
-  },
-  "homepage": "https://github.com/SomeoneIUsedToKnow/Web-programming#readme"
+    "@types/node": "20.8.9",
+    "@types/express": "^4.17.20",
+    "nodemon": "^3.0.1"
+  }
+
 }
