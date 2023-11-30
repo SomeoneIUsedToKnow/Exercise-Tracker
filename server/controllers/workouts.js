@@ -1,6 +1,5 @@
-
 const express = require('express');
-const { getAll, get, search, create, update, remove, seed } = require('../models/products');
+const { getAll, get, search, create, update, remove, seed } = require('../models/workouts');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
@@ -44,14 +43,14 @@ router.get('/', (req, res, next) => {
     
       req.body.id = req.params.id;
       update(req.body)
-      .then((user) => {
-          res.send(user);
+      .then((product) => {
+          res.send(product);
       }).catch(next);
   
 })
 .delete('/:id', (req, res, next) => {
     
-      remove(req.params.id)
+      remove(+req.params.id)
       .then(() => {
           res.send({message: 'Product removed'});
       }).catch(next);

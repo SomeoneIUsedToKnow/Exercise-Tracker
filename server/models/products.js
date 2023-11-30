@@ -39,7 +39,7 @@ async function getAll() {
  */
 async function get(id) {
   const col = await getCollection();
-  return await col.findOne({ _id: ObjectId(id) });
+  return await col.findOne({ _id: new ObjectId(id) });
 }
 
 async function getByCategory(category) {
@@ -84,7 +84,7 @@ async function update(product) {
 
   const col = await getCollection();
   const result = await col.findOneAndUpdate(
-    { _id: ObjectId(product.id) },
+    { _id: new ObjectId(product.id) },
     { $set: product },
     { returnDocument: 'after' },
   );
@@ -96,7 +96,7 @@ async function update(product) {
  */
 async function remove(id) {
   const col = await getCollection();
-  const result = await col.deleteOne({ _id: ObjectId(id) });
+  const result = await col.deleteOne({ _id: new ObjectId(id) });
   if(result.deletedCount === 0) {
     throw new Error('Product not found');
   }

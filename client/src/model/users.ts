@@ -2,7 +2,7 @@ import { api } from "./session";
 import type { Exercise } from "./exercise"
 
 export interface User {
-  id?: number,
+  
   firstName: string,
   lastName: string,
   email: string,

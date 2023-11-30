@@ -3,54 +3,89 @@
 */
 
 const express = require('express');
-const { getAll, get, search, create, update, remove, login, register } = require('../models/users');
+const { getAll, AddWorkout, update, remove, search, get, create, login} = require('../models/users');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
 
-    res.send(getAll());
+    getAll()
+    .then((users) => {
+        res.send(users);
+    })
+    .catch(next)
 
 })
 .get('/search' , (req, res, next) => {
 
-    const results = search(req.query.q);
-    res.send(results);
+    search(req.query.q)
+    .then((results) => {
+        res.send(results);
+    }).catch(next);
+
 })
 .get('/:id', (req, res, next) => {
 
-    const user = get(+req.params.id);
-    res.send( user );
+    get(req.params.id)
+    .then((user) => {
+      if(user) {
+        res.send( user );
+      }else {
+        res.status(404).send({error: 'User not found'});
+      }
+    }).catch(next);
+  
+  })
 
-})
 .post('/', (req, res, next) => {
 
-    const user = create(req.body);
-    res.send(user);
+    create(req.body)
+    .then((user) => {
+        res.send(user);
+    }).catch(next);
 
 })
+/*
+
+Pretty sure this is the same as create
 .post('/register', (req, res, next) => {
 
     const user = register(req.body);
     res.send(user);
 
-})
+}) */
 .post('/login', (req, res, next) => {
     
-    const user = login(req.body.email, req.body.password);
+    const user = login(req.body.user);
     res.send(user);
 
 })
+
 .patch('/:id', (req, res, next) => {
     
-    req.body.id = +req.params.id;
-    const user = update(req.body);
-    res.send(user);
-  
+    req.body.id = req.params.id;
+    update(req.body)
+    .then((user) => {
+        res.send(user);
+    }).catch(next);
+
 })
+.patch('/addWorkout', (req, res, next) => {
+    
+    
+    AddWorkout(req.body)
+    .then((user) => {
+        res.send(user);
+    }).catch(next);
+
+})
+
 .delete('/:id', (req, res, next) => {
     
-    remove(+req.params.id);
-    res.send({message: 'User removed'});
-});
+    remove(req.params.id)
+    .then(() => {
+        res.send({message: 'User removed'});
+    }).catch(next);
+
+})
 
 module.exports = router;
