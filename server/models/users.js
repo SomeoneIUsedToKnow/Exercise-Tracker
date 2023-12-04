@@ -90,6 +90,10 @@ const WORKOUT_COLLECTION = 'workouts'
 const {create : createWorkout} = require ('./workouts')
 
 
+const jwt =  require('jsonwebtoken')
+
+const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN;
 
 async function getAll() {
   const col = await getCollection();
@@ -171,21 +175,59 @@ async function create(user) {
 
   return user;
 }
-
-async function login(user) {
-  const col = await getCollection();
-  const myUser = await col.findOne({email: user.email})
-  if(myUser){
-    const result = user.password === myUser.password;
-    if(result){
-      return result;
-    } else {
-      throw new Error('Email or password does not match');
+async function login(email, password) {
+  try {
+   const col = await getCollection()
+    const user = await col.findOne({ email })
+    if (!user) {
+      throw {
+        message: 'Invalid email or password',
+        status: 400
+      }
     }
-  }
-  }
 
+   
 
+    if (user.password != password) {
+      throw {
+        message: 'Invalid credntials',
+        status: 400
+      }
+    }
+
+    const MyUser = { ...user, password: undefined, };
+    const token = await generateJWT(user);
+    console.log(token);
+    return { user, token };
+  } catch (error) {
+    throw error
+
+  }
+}
+
+function generateJWT(user) {
+  return new Promise((resolve, reject) => {
+    jwt.sign(user, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN } , (err, token) => {
+      if(err) {
+        reject(err);
+      } else {
+        resolve(token);
+      }
+    });
+  })
+}
+
+function verifyJWT(token) {
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, JWT_SECRET, (err, user) => {
+      if(err) {
+        reject(err);
+      } else {
+        resolve(user);
+      }
+    });
+  })
+}
 
 
 

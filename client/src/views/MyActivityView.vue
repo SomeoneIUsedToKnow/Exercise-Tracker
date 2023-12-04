@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { AddExercise, DeleteExercise,GetExercises } from '@/model/exercise';
+
 import { getSession } from '@/model/session';
 import type { Exercise} from '@/model/exercise';
 import type { User } from '@/model/users';

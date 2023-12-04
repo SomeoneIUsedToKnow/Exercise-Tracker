@@ -1,4 +1,4 @@
-###
+###ansykut github
 POST https://dummyjson.com/products/add
 Content-Type: application/json
 
@@ -51,17 +51,16 @@ https://newpaltz-fall-2023.onrender.com/api/v1/products/28
 // Users
 
 ###
-http://localhost:3000/api/v1/users/6568b886973d2029da173d9c
+http://localhost:3000/api/v1/users/
 
 ###
-POST http://localhost:3000/api/v1/users
+POST http://localhost:3000/api/v1/users/login
 Content-Type: application/json
 
 {
-  "firstName": "Moshe",
-  "lastName": "Plotkin",
+  
   "email": "plotkinm@newpaltz.edu",
-  "password": "123456"
+    "password": "12345678"
 }
 
 ###
@@ -71,7 +70,7 @@ Content-Type: application/json
 {
  "workouts": [
     {
-      "lat": "12",
+      "lat": "120",
       "long": "2",
       "date": "11/10/2023",
       "speed": 2
@@ -93,20 +92,9 @@ POST http://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
-  "email": "plotkinm@newpaltz.edu",
+  "email": "TestingAdmin1@newpaltz.edu",
   "password": "12345678",
-  "workouts":[{ "id":1, "lat":"12",
-  "long":"2",
-  "date":"11/10/2023",
-  "speed":2
-
-  }, { "id":2,"lat":"12",
-  "long":"2",
-  "date":"11/10/2023",
-  "speed":2}, { "lat":"12",
-  "long":"2",
-  "date":"11/10/2023",
-  "speed":2}]
+  "isAdmin": true
 }
 
 ###
@@ -114,8 +102,8 @@ POST http://localhost:3000/api/v1/users/login
 Content-Type: application/json
 
 {
-  "email": "plotkinm@newpaltz.edu",
-  "password": "12345678",
+  "email": "TestingAdmin1@newpaltz.edu",
+  "password": "12345678"
   
 }
 
@@ -125,6 +113,8 @@ PATCH   http://localhost:3000/api/v1/users/localhost:3000/api/v1/addWorkout/6568
 Content-Type: application/json
 
 {
+  "id": "6568b886973d2029da173d9c",
+
  "workouts": [
     {
       "lat": "12",

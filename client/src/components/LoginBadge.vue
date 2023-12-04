@@ -5,7 +5,7 @@ const session = getSession()
 const { login, logout } = useLogin()
 
 const doLogin = () => {
-  login('hbingley1@plala.or.jp', 'CQutx25i8r')
+  login('TestingAdmin1@newpaltz.edu', '12345678')
 }
 
 const doLogout = () => {
@@ -16,7 +16,7 @@ const doLogout = () => {
 
 <template>
 <div class="has-text-right" v-if="session.user">
-  Welcome, {{ session.user.firstName }} {{ session.user.lastName }} <br>
+  Welcome, {{ session.user.email }} <br>
   <small>
     {{ session.user.email }}
     <a class="button is-small is-light is-warning" @click.prevent="doLogout">

@@ -3,22 +3,24 @@ import type { Exercise } from "./exercise"
 
 export interface User {
   
-  firstName: string,
-  lastName: string,
+ // firstName: string,
+ // lastName: string,
   email: string,
   password: string,
-  isAdmin: true ,
-  token?: string
-  workouts: Exercise[] 
-  friends: User[]
+  isAdmin: true 
+  //token?: string
+ // workouts: Exercise[] 
+  //friends: User[]
 }
 
+/*
 export function AddExercise(exercise: Exercise, user : User) : void{
  
   user.workouts.push(exercise);
 
 }
-
+ */
+/*
 export function DeleteExercise(id: number, user: User): void {
   if(user.workouts != null) {
   for(let i=0; i<user.workouts.length; i++){
@@ -28,13 +30,13 @@ export function DeleteExercise(id: number, user: User): void {
 }
 }
 
-}
+} */
 
-export function getUsers(): Promise< User[]> {
+export function getUsers():  Promise< User[] | null> {
   return api("users"); 
 }
-
+/*
 export async function getUserByEmail(email: string): Promise<User | undefined> {
   const users = await getUsers();
   return users.find( x => x.email === email );
-}
+} */

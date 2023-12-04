@@ -3,9 +3,11 @@ import LoginBadge from './LoginBadge.vue';
 import { RouterLink } from 'vue-router';
 import {ref} from 'vue';
 import { getSession } from '@/model/session';
-
+import { getUsers } from '@/model/users';
+import type {User} from '@/model/users'
 const session = getSession();
 const isActive = ref(false);
+
 
 </script>
 

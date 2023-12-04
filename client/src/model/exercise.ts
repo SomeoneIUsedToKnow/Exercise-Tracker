@@ -21,7 +21,7 @@ export interface Exercise {
   export var AverageDistance: number;
   export var AverageSpeed: number;
   export var AverageTime: number;
-
+/*
   export function AddExercise(user: User, exercise: Exercise) : void{
 
     user.workouts.push(exercise);
@@ -42,4 +42,4 @@ export interface Exercise {
    }
   }
   
-  }
+  } */
