@@ -1,15 +1,26 @@
+<script setup lang="ts">
+import type { User } from '@/model/users';
+import { getuser,getSession, getAllUsers } from '@/model/session';
+
+
+let session = getSession()
+getAllUsers()
+ let variable: User
+for(let variable in session.users){
+    console.log(session.users?.pop()?.email)
+}
+</script>
+
 <template>
   <!-- Basic admin page no real data here whatsoever until users can be added -->
-  
-    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"  >
 
       <thead>
         <tr>
-          <th></th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Emails</th>
-          <th>Handle</th>
           <th>Is Admin</th>
           <th>
             <div class="dropdown is-hoverable is-right">
@@ -27,14 +38,12 @@
       </thead>
       <tbody>
         <tr>
-          <th>
           
-          </th>
+          
           <td>fname</td>
           <td>lname</td>
           <td>email</td>
-          <td>handle</td>
-          <td>true</td>
+          <td>isAdmin</td>
           <td>
           
               <button class="button">Edit Profile</button>

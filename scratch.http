@@ -64,28 +64,16 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:3000/api/v1/users/6568b886973d2029da173d9c
+PATCH http://localhost:3000/api/v1/users/656b5db554351df4fad1f584
 Content-Type: application/json
 
 {
- "workouts": [
-    {
-      "lat": "120",
-      "long": "2",
-      "date": "11/10/2023",
-      "speed": 2
-    },
-    {
-      "lat": "12",
-      "long": "2",
-      "date": "11/10/2021",
-      "speed": 2
-    }
-  ]
+  "FirstName":"Jeff",
+  "LastName":"jeffffffery"
 }
 
 ###
-DELETE http://localhost:3000/api/v1/products/31
+DELETE http://localhost:3000/api/v1/users/6568b886973d2029da173d9c
 
 ###
 POST http://localhost:3000/api/v1/users

@@ -2,13 +2,15 @@ import { reactive } from "vue";
 import { useRouter } from "vue-router"
 import { useToast } from "vue-toastification";
 import * as myFetch from "./myFetch";
-import { type User } from "./users";
+import { getUsers, type User } from "./users";
 
 const toast = useToast();
 
 const session = reactive({
   user: null as User | null,
   token: null as string | null,
+  users: null as User[] | null,
+  randomuser: null as User | null,
   redirectUrl: null as string | null,
   messages: [] as {
     type: string,
@@ -40,6 +42,28 @@ export function showError(err: any){
   toast.error( err.message ?? err);
 }
 
+
+
+
+
+export async function getAllUsers(): Promise<User[] | null>{
+  const response = await api("users/");
+  session.users = response.users;
+  return session.users ;
+  
+}
+
+
+
+  export async function getuser(): Promise<User | null> {
+    const router = useRouter();
+
+    const response = await api("users/6568acca6ba4ed0e56b24024")
+
+    session.randomuser = response.user;
+   
+    return response.user;
+  }
 export function useLogin(){
   const router = useRouter();
 

@@ -3,8 +3,8 @@ import type { Exercise } from "./exercise"
 
 export interface User {
   
- // firstName: string,
- // lastName: string,
+  FirstName: string,
+  LastName: string,
   email: string,
   password: string,
   isAdmin: true 

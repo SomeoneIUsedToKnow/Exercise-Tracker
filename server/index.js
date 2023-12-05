@@ -27,8 +27,8 @@ app
     })
 
     .use(parseAuthorizationToken)
-
-    .use('/api/v1/products', requireUser(), productController)
+//put back requireUser() in products and use it for something else
+    .use('/api/v1/products', productController)
     .use('/api/v1/users', userController)
 
     .get('*', (req, res) => {

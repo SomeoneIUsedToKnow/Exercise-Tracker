@@ -6,15 +6,18 @@ const express = require('express');
 const { getAll, AddWorkout, update, remove, search, get, create, login} = require('../models/users');
 const router = express.Router();
 const { requireUser } = require('../middleware/authorization')
+
 router.get('/', (req, res, next) => {
 
+   
     getAll()
-    .then((users) => {
-        res.send(users);
-    })
-    .catch(next)
+    .then(users=>{
+        res.send(users)
+    }).catch(next)
 
 })
+
+
 .get('/search' , (req, res, next) => {
 
     search(req.query.q)
@@ -53,20 +56,14 @@ Pretty sure this is the same as create
     res.send(user);
 
 }) */
-.post('/login', async (req, res) => {
-    try {
+.post('/login',  (req, res, next) => {
+
         const { email, password } = req.body;
-        let Auser = await login(email, password)
-        let myUser = Auser.user;
-       
-        return res.status(200).json({ myUser })
-    } catch (error) {
-        if (error.code !== 500) {
-            return res.status(400).json(error.message)
-        } else {
-            return res.status(500).json(error.message)
-        }
-    }
+        login(email, password)
+        .then(x=>{
+            res.send(x)
+        }).catch(next)
+
 })
 
 .patch('/:id', (req, res, next) => {

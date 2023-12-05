@@ -97,7 +97,8 @@ const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN;
 
 async function getAll() {
   const col = await getCollection();
-  return col.find({}).toArray();
+   const users = await col.find().toArray();
+  return {users};
 }
 
 async function getCollection() {
@@ -159,9 +160,8 @@ async function search(query) {
 
 async function get(id) {
   const col = await getCollection();
-  const myUser =  await col.findOne({ _id: new ObjectId(id) });
-  
-  return myUser.workouts;
+  const user = await col.findOne({ _id: new ObjectId(id) });
+  return {user};
 
 }
 
@@ -197,7 +197,7 @@ async function login(email, password) {
 
     const MyUser = { ...user, password: undefined, };
     const token = await generateJWT(user);
-    console.log(token);
+
     return { user, token };
   } catch (error) {
     throw error
@@ -232,5 +232,5 @@ function verifyJWT(token) {
 
 
 module.exports = {
-  getAll, update, AddWorkout, remove, search, get, create, login
+  getAll, update, AddWorkout, remove, search, get, create, login, verifyJWT
 };

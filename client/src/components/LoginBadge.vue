@@ -18,7 +18,7 @@ const doLogout = () => {
 <div class="has-text-right" v-if="session.user">
   Welcome, {{ session.user.email }} <br>
   <small>
-    {{ session.user.email }}
+    {{ session.user.FirstName }} , {{ session.user.LastName }}
     <a class="button is-small is-light is-warning" @click.prevent="doLogout">
       <span class="icon">
         <i class="fas fa-sign-out-alt"></i>
