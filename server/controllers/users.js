@@ -21,8 +21,8 @@ router.get('/', (req, res, next) => {
 .get('/search' , (req, res, next) => {
 
     search(req.query.q)
-    .then((results) => {
-        res.send(results);
+    .then((users) => {
+        res.send(users);
     }).catch(next);
 
 })

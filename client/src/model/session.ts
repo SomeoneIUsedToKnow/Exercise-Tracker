@@ -3,6 +3,7 @@ import { useRouter } from "vue-router"
 import { useToast } from "vue-toastification";
 import * as myFetch from "./myFetch";
 import { getUsers, type User } from "./users";
+import type { Exercise } from "./exercise";
 
 const toast = useToast();
 
@@ -57,7 +58,16 @@ export function showError(err: any){
 
 
 export async function updateUser(user:User): Promise<User | null> {
-  const response = await api(`users/${user._id}`,{user},"PATCH")
+  const response = await api(`users/${session.user?._id}`,user,"PATCH")
+  session.user = response.user;
+
+  return session.user;
+  
+}
+
+
+export async function updateUserWorkouts(user: User): Promise<User | null> {
+  const response = await api(`users/${session.user?._id}`,user,"PATCH")
   session.user = response.user;
 
   return session.user;

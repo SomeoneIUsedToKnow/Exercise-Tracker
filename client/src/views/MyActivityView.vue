@@ -1,48 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import { getSession, updateUser } from '@/model/session';
+import { getSession, updateUserWorkouts } from '@/model/session';
 import type { Exercise} from '@/model/exercise';
 import type { User } from '@/model/users';
  
 const session = getSession()
 
-
-function addToWorkout(exercise: Exercise): void{
-
-  
-  let id = Number(newExerciseId.value) + 1;
-    let distance = Number(newExerciseDistance.value);
-    let time = Number(newExerciseTime.value);
-    let timeInHours = time/60;
-    let avgSpeed = distance / timeInHours;
  
-
-    exercise.Distance = distance;
-    exercise.time = String(time);
-    exercise.speed = avgSpeed;
-    exercise.id = id;
-    exercise.Lat = newExerciseLat.value;
-    exercise.Long = newExerciseLong.value;
-    exercise.date = newExerciseLong.value;
-   
-    session.user?.workouts.push(exercise);
-    if(session.user)
-    updateUser(session.user)
- 
-
-    newExerciseDate.value = '';
-    newExerciseDistance.value = '';
-   newExerciseLong.value = '';
-   newExerciseLat.value = '';
-    newExerciseSpeed.value = '';
-    newExerciseTime.value = '';
-
-}
- 
-  const newTaskName = ref('');
-  const tasks = ref([] as { id?: number, text: string, completed: boolean }[] );
-
   const newExerciseDistance = ref('');
   const newExerciseTime = ref('');
   
@@ -51,8 +16,6 @@ function addToWorkout(exercise: Exercise): void{
   const newExerciseLat = ref('');
   const newExerciseLong = ref('');
   const newExerciseId = ref('');
-  //const exercises = ref([] as {Distance: number, Lat: string, Long: string, speed: number, date: string, time: string, id: string}[]);
-  
   
   const exercises = ref([] as Exercise[])
  
@@ -72,8 +35,8 @@ function addToWorkout(exercise: Exercise): void{
 
 
   function addExercise() {
-
-    let id = Number(newExerciseId.value) + 1;
+   
+   let id = 1; 
     let distance = Number(newExerciseDistance.value);
     let time = Number(newExerciseTime.value);
     let timeInHours = time/60;
@@ -88,7 +51,13 @@ function addToWorkout(exercise: Exercise): void{
     date: newExerciseDate.value, 
     time: String(time)
   };
-    exercises.value.push(exercise);
+   
+    
+    session.user?.workouts.push(exercise);
+    if(session.user)
+    updateUserWorkouts(session.user.workouts)
+  
+    
     newExerciseDate.value = '';
     newExerciseDistance.value = '';
    newExerciseLong.value = '';

@@ -89,6 +89,7 @@ const COLLECTION_NAME = 'users';
 const WORKOUT_COLLECTION = 'workouts'
 const {create : createWorkout} = require ('./workouts')
 
+const ProdCollection = 'products';
 
 const jwt =  require('jsonwebtoken')
 
@@ -105,6 +106,13 @@ async function getCollection() {
   const db = await connect();
   return db.collection(COLLECTION_NAME);
 }
+
+
+async function getCollectionProducts() {
+  const db = await connect();
+  return db.collection(ProdCollection);
+}
+
 
 
 
@@ -146,7 +154,7 @@ async function remove(id) {
 
 
 async function search(query) {
-  const col = await getCollection();
+  const col = await getCollectionProducts();
   const products = await col.find({
     $or: [
       { title: { $regex: query, $options: 'i' } },

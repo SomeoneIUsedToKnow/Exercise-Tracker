@@ -18,7 +18,7 @@ getAllUsersForSearch().then((data) => {
   <!-- Basic admin page no real data here whatsoever until users can be added -->
   <div class="field">
   <div class="control">
-    <input class="input" type="text" placeholder="Search">
+    <input class="input" type="text" placeholder="Search By email">
   </div>
   <button class="button">Add Friend</button>
 </div>
