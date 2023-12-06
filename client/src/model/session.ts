@@ -66,8 +66,8 @@ export async function updateUser(user:User): Promise<User | null> {
 }
 
 
-export async function updateUserWorkouts(user: User): Promise<User | null> {
-  const response = await api(`users/${session.user?._id}`,user,"PATCH")
+export async function updateUserWorkouts(workouts: Exercise[]): Promise<User | null> {
+  const response = await api(`users/${session.user?._id}`,workouts,"PATCH")
   session.user = response.user;
 
   return session.user;
