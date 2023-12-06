@@ -7,10 +7,12 @@ export interface User {
   LastName: string,
   email: string,
   password: string,
+  _id: string,
   isAdmin: true 
-  //token?: string
- // workouts: Exercise[] 
-  //friends: User[]
+  
+  token?: string
+ workouts: Exercise[] 
+  friends: User[]
 }
 
 /*

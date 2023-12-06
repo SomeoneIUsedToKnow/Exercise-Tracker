@@ -1,14 +1,26 @@
 <script setup lang="ts">
 import type { User } from '@/model/users';
-import { getuser,getSession, getAllUsers } from '@/model/session';
+import { getuser,getSession, getAllUsers, deleteaUser, useLogin } from '@/model/session';
 
 
 let session = getSession()
+const { login } = useLogin()
 getAllUsers()
- let variable: User
-for(let variable in session.users){
-    console.log(session.users?.pop()?.email)
+
+
+function Delete(id: string): void {
+  deleteaUser(id);
+   location.reload()
+ 
+  login('TestingAdmin1@newpaltz.edu', '12345678')
+  
 }
+  
+
+ 
+let users: User[] | null = session.users;
+
+
 </script>
 
 <template>
@@ -37,17 +49,18 @@ for(let variable in session.users){
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr v-for="user in users">
           
           
-          <td>fname</td>
-          <td>lname</td>
-          <td>email</td>
-          <td>isAdmin</td>
+          <td>{{user.FirstName}}</td>
+          <td>{{user.LastName}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.isAdmin}}</td>
           <td>
           
-              <button class="button">Edit Profile</button>
-            <button class="button">Edit Account</button>
+             
+              <button class="button" @click="Delete(user._id)" >Delete</button>
+             
             </td>
         </tr>
 

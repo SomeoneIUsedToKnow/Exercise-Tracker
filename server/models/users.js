@@ -122,15 +122,15 @@ async function AddWorkout(user) {
   return result;
 }
 
-async function update(user) {
+async function update(myUser) {
 
   const col = await getCollection();
-  const result = await col.findOneAndUpdate(
-    { _id: new ObjectId(user.id) },
-    { $set: user },
+  const user = await col.findOneAndUpdate(
+    { _id: new ObjectId(myUser.id) },
+    { $set: myUser },
     { returnDocument: 'after' },
   );
-  return result;
+  return {user};
 }
 
 

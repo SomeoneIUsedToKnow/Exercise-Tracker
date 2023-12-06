@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import { getSession } from '@/model/session';
+import { getSession, updateUser } from '@/model/session';
 import type { Exercise} from '@/model/exercise';
 import type { User } from '@/model/users';
  
 const session = getSession()
+
 
 function addToWorkout(exercise: Exercise): void{
 
@@ -25,8 +26,9 @@ function addToWorkout(exercise: Exercise): void{
     exercise.Long = newExerciseLong.value;
     exercise.date = newExerciseLong.value;
    
-    
-   
+    session.user?.workouts.push(exercise);
+    if(session.user)
+    updateUser(session.user)
  
 
     newExerciseDate.value = '';
@@ -149,7 +151,7 @@ function addToWorkout(exercise: Exercise): void{
           </p>
         </div>
         
-        <label class="box" v-for="variable in exercises">
+        <label class="box" v-for="variable in session.user?.workouts">
          
           <p>Ran For: {{ variable.time }}min   
              <br>Distance Ran: {{variable.Distance}}miles

@@ -36,6 +36,11 @@ export function getSession(){
   return session;
 }
 
+
+export function deleteaUser(id: string)
+{
+  api(`users/${id}`,"","DELETE")
+}
 export function showError(err: any){
   console.error(err);
   session.messages.push({ type: "error", text: err.message ?? err});
@@ -43,22 +48,29 @@ export function showError(err: any){
 }
 
 
+export async function updateUser(user:User): Promise<User | null> {
+  const response = await api(`users/${user._id}`,{user},"PATCH")
+  session.user = response.user;
 
+  return session.user;
+  
+}
 
 
 export async function getAllUsers(): Promise<User[] | null>{
-  const response = await api("users/");
+  const response =await api("users/");
   session.users = response.users;
-  return session.users ;
+
+  return session.users;
   
 }
 
 
 
-  export async function getuser(): Promise<User | null> {
+  export async function getuser(id: string): Promise<User | null> {
     const router = useRouter();
 
-    const response = await api("users/6568acca6ba4ed0e56b24024")
+    const response = await api(`users/${id}`)
 
     session.randomuser = response.user;
    
