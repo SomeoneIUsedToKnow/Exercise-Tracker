@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { User } from '@/model/users';
-import { getuser,getSession, getAllUsers } from '@/model/session';
+import { getuser,getSession, getAllUsersForSearch } from '@/model/session';
 
 
 let session = getSession()
-getAllUsers()
+getAllUsersForSearch()
 
 
  

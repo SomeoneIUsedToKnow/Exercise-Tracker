@@ -1,18 +1,16 @@
 <script setup lang="ts">
 import type { User } from '@/model/users';
-import { getuser,getSession, getAllUsers, deleteaUser, useLogin } from '@/model/session';
+import { getuser,getSession, getAllUsersForUserView, deleteaUser, useLogin } from '@/model/session';
 
 
 let session = getSession()
-const { login } = useLogin()
-getAllUsers()
-
+getAllUsersForUserView();
 
 function Delete(id: string): void {
   deleteaUser(id);
    location.reload()
  
-  login('TestingAdmin1@newpaltz.edu', '12345678')
+ 
   
 }
   

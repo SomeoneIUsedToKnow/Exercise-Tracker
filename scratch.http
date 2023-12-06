@@ -54,13 +54,25 @@ https://newpaltz-fall-2023.onrender.com/api/v1/products/28
 http://localhost:3000/api/v1/users/
 
 ###
-POST http://localhost:3000/api/v1/users/login
+POST http://localhost:3000/api/v1/users/
 Content-Type: application/json
 
 {
   
   "email": "plotkinm@newpaltz.edu",
-    "password": "12345678"
+    "password": "12345678",
+    "isAdmin": true,
+     "FirstName": "Jeff",
+    "LastName": "jeffsaia",
+    "workouts": [
+    {
+      "lat": "12",
+      "long": "2",
+      "date": "11/10/2023",
+      "speed": 2
+    }
+  ]
+    
 }
 
 ###
@@ -69,7 +81,11 @@ Content-Type: application/json
 
 {
   "FirstName":"Jeff",
-  "LastName":"jeffffffery"
+  "LastName":"jeffffffery",
+  "workouts":[{
+    "distance": 124,
+    "time":12
+  }]
 }
 
 ###
@@ -96,12 +112,12 @@ Content-Type: application/json
 }
 
 ###
-PATCH   http://localhost:3000/api/v1/users/localhost:3000/api/v1/addWorkout/6568b886973d2029da173d9c
+PATCH   http://localhost:3000/api/v1/users/656de73f95df8dd474b00f4a
 
 Content-Type: application/json
 
 {
-  "id": "6568b886973d2029da173d9c",
+  
 
  "workouts": [
     {
