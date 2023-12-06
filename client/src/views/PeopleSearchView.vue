@@ -16,7 +16,12 @@ getAllUsersForSearch().then((data) => {
 
 <template>
   <!-- Basic admin page no real data here whatsoever until users can be added -->
-
+  <div class="field">
+  <div class="control">
+    <input class="input" type="text" placeholder="Search">
+  </div>
+  <button class="button">Add Friend</button>
+</div>
     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"  >
 
       <thead>

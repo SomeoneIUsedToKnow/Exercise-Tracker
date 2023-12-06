@@ -10,10 +10,14 @@ function Delete(id: string): void {
   deleteaUser(id);
  
  
+getAllUsersForUserView().then((data) => {
+  if(data)
+  users.value = data
+})
   
 }
   
-const users = ref([] as User[])
+let users = ref([] as User[])
 
 getAllUsersForUserView().then((data) => {
   if(data)
