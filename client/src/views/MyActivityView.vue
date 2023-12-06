@@ -55,7 +55,7 @@ const session = getSession()
     
     session.user?.workouts.push(exercise);
     if(session.user)
-    updateUserWorkouts(session.user)
+    updateUserWorkouts(session.user.workouts)
   
     
     newExerciseDate.value = '';
