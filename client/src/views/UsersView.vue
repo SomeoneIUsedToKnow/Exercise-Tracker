@@ -1,22 +1,24 @@
 <script setup lang="ts">
 import type { User } from '@/model/users';
 import { getuser,getSession, getAllUsersForUserView, deleteaUser, useLogin } from '@/model/session';
-
-
+import { ref } from 'vue'
+/*
 let session = getSession()
 getAllUsersForUserView();
-
+*/
 function Delete(id: string): void {
   deleteaUser(id);
-   location.reload()
  
  
   
 }
   
+const users = ref([] as User[])
 
- 
-let users: User[] | null = session.users;
+getAllUsersForUserView().then((data) => {
+  if(data)
+  users.value = data
+})
 
 
 </script>

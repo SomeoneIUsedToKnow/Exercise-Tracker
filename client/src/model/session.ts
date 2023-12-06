@@ -37,9 +37,17 @@ export function getSession(){
 }
 
 
-export function deleteaUser(id: string)
+export async function deleteaUser(id: string): Promise<User[] | null>
 {
+  const router = useRouter();
   api(`users/${id}`,"","DELETE")
+
+
+  const response =await api("users/");
+  session.users = response.users;
+  router.push(session.redirectUrl || "/users");
+  return session.users;
+
 }
 export function showError(err: any){
   console.error(err);
@@ -58,22 +66,21 @@ export async function updateUser(user:User): Promise<User | null> {
 
 
 export async function getAllUsersForUserView(): Promise<User[] | null>{
-  const router = useRouter();
+ 
   const response =await api("users/");
-  session.users = response.users;
+ 
 
-  router.push(session.redirectUrl || "/users");
-  return session.users;
+  
+  return response.users;
   
 }
 
 export async function getAllUsersForSearch(): Promise<User[] | null>{
-  const router = useRouter();
   const response =await api("users/");
   session.users = response.users;
 
-  router.push(session.redirectUrl || "/peoplesearch");
-  return session.users;
+ 
+  return response.users;
   
 }
 

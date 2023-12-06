@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import type { User } from '@/model/users';
 import { getuser,getSession, getAllUsersForSearch } from '@/model/session';
+import{ref} from 'vue'
 
+const users = ref([] as User[])
 
-let session = getSession()
-getAllUsersForSearch()
-
-
- 
-let users: User[] | null = session.users;
-
+getAllUsersForSearch().then((data) => {
+  if(data)
+  users.value = data
+})
 
 
 
