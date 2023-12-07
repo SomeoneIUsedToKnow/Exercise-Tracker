@@ -23,18 +23,21 @@ const session = getSession()
 
 
   function Delete(id: number): void {
-    for(let i=0; i<exercises.value.length; i++){
-   if (exercises.value[i].id == id){
-   exercises.value.splice(i);
+if(session.user){
+
+    for(let i=0; i<session.user.workouts.length; i++){
+   if (session.user.workouts[i].id == id){
+   session.user.workouts.splice(i,i);
    }
 }
-  
+}
 }
 
       
 
-
+let continueId: number
   function addExercise() {
+    
    
    let id = 1; 
     let distance = Number(newExerciseDistance.value);
@@ -52,11 +55,10 @@ const session = getSession()
     time: String(time)
   };
    
-    
-    session.user?.workouts.push(exercise);
-    if(session.user)
+  if(session.user){
+    session.user.workouts.push(exercise);
     updateUserWorkouts(session.user.workouts)
-  
+  }
     
     newExerciseDate.value = '';
     newExerciseDistance.value = '';
