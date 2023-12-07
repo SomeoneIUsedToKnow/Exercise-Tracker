@@ -1,4 +1,29 @@
 <script setup lang="ts">
+import { AverageDistance } from '@/model/exercise';
+import { getSession } from '@/model/session';
+import { ref } from 'vue';
+let  averageDistance: number
+let averageDuration: number
+let averageSpeed: number
+let distanceTally!: number
+let DurationTally!: number
+let speedTally!: number
+const session = getSession()
+if(session.user){
+ 
+let totalWorkouts = session.user.workouts.length
+session.user.workouts.forEach(element => {
+ let  distanceTally= + element.Distance
+  DurationTally = + element.time
+  speedTally = + element.speed
+
+});
+
+averageDistance = distanceTally/totalWorkouts
+averageDuration = DurationTally/totalWorkouts
+averageSpeed = speedTally/totalWorkouts
+
+}
 
 
 </script>
@@ -9,15 +34,15 @@
     <h2 class="title">Overall Stats</h2>
     <div class="columns is-multiline">
       <div class="column is-half">
-        <h3 class="value">Distance: 20miles</h3>
+        <h3 class="value">Distance: {{averageDistance}}</h3>
         <caption class="caption">Average Distance Ran</caption>
       </div>
       <div class="column is-half">
-        <h3 class="value">10 min</h3>
+        <h3 class="value">{{averageDuration}} min</h3>
         <caption class="caption">Average Duration</caption>
       </div>
       <div  class="column is-half">
-        <h3 class="value">2 mph</h3>
+        <h3 class="value">{{averageSpeed}}mph</h3>
         <caption class="caption">Average Pace</caption>
       </div>
       <div class="column is-half">

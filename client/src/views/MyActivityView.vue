@@ -17,29 +17,30 @@ const session = getSession()
   const newExerciseLong = ref('');
   const newExerciseId = ref('');
   
-  const exercises = ref([] as Exercise[])
+  //let exercises = ref([] as Exercise[])
  
- 
+  let myExercises: Exercise[]
 
 
   function Delete(id: number): void {
+    let exercises = ref([] as Exercise[])
 if(session.user){
-
-    for(let i=0; i<session.user.workouts.length; i++){
-   if (session.user.workouts[i].id == id){
-   session.user.workouts.splice(i,i);
-   }
+ 
+ 
+for(let i = 0; i < session.user.workouts.length; i++){
+  if(session.user.workouts[i].id != id){
+    exercises.value.push(session.user.workouts[i])
+  }
 }
-}
-}
-
-      
-
+session.user.workouts = exercises.value
+updateUserWorkouts(exercises.value)
+  }
+  }
 let continueId: number
   function addExercise() {
     
    
-   let id = 1; 
+   let id = Number((Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4)); 
     let distance = Number(newExerciseDistance.value);
     let time = Number(newExerciseTime.value);
     let timeInHours = time/60;

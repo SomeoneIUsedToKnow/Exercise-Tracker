@@ -16,7 +16,7 @@ http://localhost:3000
 // Products
 
 ###
-http://localhost:3000/api/v1/products
+http://localhost:3000/api/v1/users
 
 ###
 POST http://localhost:3000/api/v1/products/seed
@@ -51,45 +51,39 @@ https://newpaltz-fall-2023.onrender.com/api/v1/products/28
 // Users
 
 ###
-http://localhost:3000/api/v1/users/656de2a5d48fbe3bde0ff2a8
+http://localhost:3000/api/v1/users/
 
 ###
 POST http://localhost:3000/api/v1/users/
 Content-Type: application/json
 
 {
-  
-  "email": "plotkinm@newpaltz.edu",
-    "password": "12345678",
-    "isAdmin": true,
-     "FirstName": "Jeff",
-    "LastName": "jeffsaia",
-    "workouts": [
-    {
-      "lat": "12",
-      "long": "2",
-      "date": "11/10/2023",
-      "speed": 2
+
+ "email": "TestingAdmin1@newpaltz.edu",
+      "password": "12345678",
+      "isAdmin": true,
+      "FirstName": "Jeff",
+      "LastName": "jeffffffery",
+      "friends": [
+        "656de73f95df8dd474b00f4a",
+        "6570e20962778001b479e4cc"
+      ],
+      "workouts":[{}]
     }
-  ]
     
-}
+
 
 ###
-PATCH http://localhost:3000/api/v1/users/656b5db554351df4fad1f584
+PATCH http://localhost:3000/api/v1/users/
 Content-Type: application/json
 
 {
-  "FirstName":"Jeff",
-  "LastName":"jeffffffery",
-  "workouts":[{
-    "distance": 124,
-    "time":12
-  }]
+  "email": "TestingAdmin@newpaltz.edu",
+  "friends":[]
 }
 
 ###
-DELETE http://localhost:3000/api/v1/users/6568b886973d2029da173d9c
+DELETE http://localhost:3000/api/v1/users/6570e20962778001b479e4cc
 
 ###
 POST http://localhost:3000/api/v1/users
@@ -106,27 +100,21 @@ POST http://localhost:3000/api/v1/users/login
 Content-Type: application/json
 
 {
-  "email": "TestingAdmin1@newpaltz.edu",
+  "email": "TestingAdmin@newpaltz.edu",
   "password": "12345678"
   
 }
 
 ###
-PATCH   http://localhost:3000/api/v1/users/656de73f95df8dd474b00f4a
+PATCH   http://localhost:3000/api/v1/users/656de2a5d48fbe3bde0ff2a8
 
 Content-Type: application/json
 
 {
   
 
- "workouts": [
-    {
-      "lat": "12",
-      "long": "2",
-      "date": "11/10/2023",
-      "speed": 2
-    }
-  ]
+ "friends": ["6570e20962778001b479e4cc"]
+  
  }
   
 

@@ -12,7 +12,7 @@ export interface User {
   
   token?: string
  workouts: Exercise[] 
-  friends: User[]
+  friends: String[]
 }
 
 /*

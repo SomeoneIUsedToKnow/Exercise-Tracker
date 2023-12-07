@@ -75,6 +75,15 @@ export async function updateUserWorkouts(workouts: Exercise[]): Promise<User | n
 }
 
 
+export async function updateUserFriends(friends: String[]): Promise<User | null> {
+  const response = await api(`users/${session.user?._id}`,{friends},"PATCH")
+  session.user = response.user;
+
+  return session.user;
+  
+}
+
+
 export async function getAllUsersForUserView(): Promise<User[] | null>{
  
   const response =await api("users/");
@@ -97,7 +106,7 @@ export async function getAllUsersForSearch(): Promise<User[] | null>{
 
 
 
-  export async function getuser(id: string): Promise<User | null> {
+  export async function getuser(id: String): Promise<User | null> {
     const router = useRouter();
 
     const response = await api(`users/${id}`)

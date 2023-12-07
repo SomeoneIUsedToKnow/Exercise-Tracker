@@ -1,14 +1,37 @@
 <script setup lang="ts">
 import type { User } from '@/model/users';
-import { getuser,getSession, getAllUsersForSearch } from '@/model/session';
+import { getuser,getSession, getAllUsersForSearch,updateUserFriends } from '@/model/session';
 import{ref} from 'vue'
 
+
+const session = getSession()
 const users = ref([] as User[])
 
 getAllUsersForSearch().then((data) => {
   if(data)
   users.value = data
 })
+
+function addAFriend(id: String){
+  if(session.user?._id != id){
+    if(session.user?.friends.length == 0){
+      session.user.friends.push(id)
+      updateUserFriends(session.user.friends)
+
+    }else {
+    if(session.user){
+      for(let i = 0; i < session.user.friends.length; i++){
+        if(session.user.friends[i] == id){
+          return;
+        }
+      }
+      session.user?.friends.push(id)
+    updateUserFriends(session.user?.friends)
+    }
+}
+  }
+}
+
 
 
 
@@ -54,7 +77,7 @@ getAllUsersForSearch().then((data) => {
           <td>{{user.isAdmin}}</td>
           <td>
           
-              <button class="button">Add Friend</button>
+              <button class="button" @click="addAFriend(user._id)">Add Friend</button>
            
             </td>
         </tr>
