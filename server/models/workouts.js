@@ -19,7 +19,7 @@ async function getCollection() {
 
 
 /**
- * @returns {Promise<Exercises[]>} An array of products.
+ * @returns {Promise<Exercises[]>} An array of exercises.
  */
 async function getAll() {
   const col = await getCollection();
