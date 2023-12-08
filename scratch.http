@@ -6,12 +6,12 @@
 http://localhost:3000/api/v1/users/
 
 ###
-POST http://localhost:3000/api/v1/users/
+POST  http://localhost:3000/api/v1/users/
 Content-Type: application/json
 
 {
 
- "email": "testthedelete@newpaltz.edu",
+ "email": "testAuser@newpaltz.edu",
       "password": "12345678",
       "isAdmin": true,
       "FirstName": "Jeff",
@@ -20,7 +20,19 @@ Content-Type: application/json
         "656de73f95df8dd474b00f4a",
         "6570e20962778001b479e4cc"
       ],
-      "workouts":[{}]
+      "workouts": [
+        {
+          "id": 0.0633,
+          "Distance": 1,
+          "Lat": "100",
+          "Long": "100",
+          "speed": 60,
+          "date": "100",
+          "time": "1"
+        }
+      ],
+      "userFriends":[{}]
+
     }
     
 
@@ -35,7 +47,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/api/v1/users/6570e20962778001b479e4cc
+DELETE http://localhost:3000/api/v1/users/65716414ffe992dced6d63d5
 
 ###
 POST http://localhost:3000/api/v1/users
@@ -52,20 +64,20 @@ POST http://localhost:3000/api/v1/users/login
 Content-Type: application/json
 
 {
-  "email": "TestingAdmin@newpaltz.edu",
+  "email": "TestingAdmin1@newpaltz.edu",
   "password": "12345678"
   
 }
 
 ###
-PATCH   http://localhost:3000/api/v1/users/656de2a5d48fbe3bde0ff2a8
+GET   http://localhost:3000/api/v1/users/search
 
 Content-Type: application/json
 
 {
   
 
- "friends": ["6570e20962778001b479e4cc"]
+ "email":"plotkinm@newpaltz.edu"
   
  }
   

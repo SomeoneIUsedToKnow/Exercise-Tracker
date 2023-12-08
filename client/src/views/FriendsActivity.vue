@@ -1,63 +1,55 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-
-import { getSession, updateUserWorkouts,getAllUsersForSearch,getuser } from '@/model/session';
-import type { Exercise} from '@/model/exercise';
-import { getUsers, type User } from '@/model/users';
-
-
-const session = getSession()
-
-
-function Delete(){
-
-}
-
-let users = ref([] as User[])
-let correctUsers = ref([] as User[])
-let myuser: User
-
-if(session.user){
-
-getAllUsersForSearch().then((data) => {
-  if(data){
+import type { User } from '@/model/users';
+import { getuser,getSession, getAllUsersForUserView, deleteaUser, useLogin } from '@/model/session';
+import { ref } from 'vue'
+/*
+let session = getSession()
+getAllUsersForUserView();
+*/
+function Delete(id: string): void {
+  deleteaUser(id);
+ 
+getAllUsersForUserView().then((data) => {
+  if(data)
   users.value = data
-  }
+})
+  
+}
+  
+let users = ref([] as User[])
+
+getAllUsersForUserView().then((data) => {
+  if(data)
+  users.value = data
 })
 
 
-}
-
-
-
-
- </script>
+</script>
 
 <template>
   <main class="columns is-multiline is-centered">
     <div class="column is-full">
-      <h1 class="title" >Friend's Most Recent Activities</h1>
+      <h1 class="title" >My Activity</h1>
       
     </div>
 
     <div class="column is-half-desktop is-centered">
       <div class="panel is-primary">
         <p class="panel-heading">
-          Friend's Runs:
-        </p>
+        Friends Runs
+        </p>     
+        <label class="box" v-for="variable in users">
+         
+          <p>Ran For: {{ variable.FirstName }}min   
+             <br>Distance Ran: {{variable.FirstName}}miles
+             <br>Latitude: {{variable.FirstName}}
+             <br>Longitude: {{variable.FirstName}}
+             <br>Date: {{ variable.FirstName }}
+              <br>Average Speed: {{ variable.FirstName }} miles per hour</p>
+              <button  @click="Delete(variable.FirstName)" >Delete</button>
+        </label>
        
-        <label class="box" v-for="variable in users" >
-
-         Email: {{  variable.email }}
-         <p>Ran For: {{ variable.workouts[0].time }}min   
-            <br>Distance Ran:{{variable.workouts[0].Distance   }}miles
-            <br>Latitude: {{  variable.workouts[0].Lat }}
-            <br>Longitude:{{ variable.workouts[0].Long }}
-            <br>Date: {{ variable.workouts[0].date }}
-             <br>Average Speed: {{variable.workouts[0].speed   }} miles per hour</p>
-             <button  @click="Delete()" >Remove</button>
-       </label>
-       </div>
       </div>
+    </div>
   </main>
 </template>
