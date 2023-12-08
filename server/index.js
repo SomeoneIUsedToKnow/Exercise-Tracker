@@ -1,7 +1,9 @@
+// express.js
 
 const path = require('path')
 const express = require('express');
 require('dotenv').config();
+const adminController = require('./controllers/admin');
 const userController = require('./controllers/users');
 const { parseAuthorizationToken, requireUser } = require('./middleware/authorization');
 const app = express();
@@ -26,7 +28,8 @@ app
     })
 
     .use(parseAuthorizationToken)
-//put back requireUser() in products and use it for something else
+
+    .use('/api/v1/admin', requireUser(), adminController)
     .use('/api/v1/users', userController)
 
     .get('*', (req, res) => {

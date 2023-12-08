@@ -50,6 +50,20 @@ export async function deleteaUser(id: string): Promise<User[] | null>
   return session.users;
 
 }
+
+
+export async function admindeleteaUser(id: string): Promise<User[] | null>
+{
+  const router = useRouter();
+  api(`admin/${id}`,"","DELETE")
+
+
+  const response =await api("admin/");
+  session.users = response.users;
+
+  return session.users;
+
+}
 export function showError(err: any){
   console.error(err);
   session.messages.push({ type: "error", text: err.message ?? err});
@@ -86,7 +100,7 @@ export async function updateUserFriends(friends: String[]): Promise<User | null>
 
 export async function getAllUsersForUserView(): Promise<User[] | null>{
  
-  const response =await api("users/");
+  const response = await api("users/");
  
 
   
@@ -115,6 +129,7 @@ export async function getAllUsersForSearch(): Promise<User[] | null>{
    
     return response.user;
   }
+
 export function useLogin(){
   const router = useRouter();
 

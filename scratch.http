@@ -54,7 +54,7 @@ POST http://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
-  "email": "TestingAdmin1@newpaltz.edu",
+  "email": "testdelete@newpaltz.edu",
   "password": "12345678",
   "isAdmin": true
 }

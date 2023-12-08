@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import type { User } from '@/model/users';
-import { getuser,getSession, getAllUsersForUserView, deleteaUser, useLogin } from '@/model/session';
+import { getuser,getSession, getAllUsersForUserView, deleteaUser, useLogin, admindeleteaUser } from '@/model/session';
 import { ref } from 'vue'
 /*
 let session = getSession()
 getAllUsersForUserView();
 */
 function Delete(id: string): void {
-  deleteaUser(id);
- 
+  admindeleteaUser(id);
  
 getAllUsersForUserView().then((data) => {
   if(data)
