@@ -16,13 +16,17 @@ module.exports = {
   },
   requireUser(adminOnly = false){
     return function(req, res, next) {
+   
       if (!req.user) {
         return next({
           status: 401,
-          message: 'You must be logged in to perform this action.'
+         message: 'must be logged in '
         });
       }
-      if (adminOnly && !req.user.admin) {
+
+      if (adminOnly && req.user.admin) {
+      
+        console.log(req.user)
         return next({
           status: 403,
           message: 'You must be an admin to perform this action.'

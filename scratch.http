@@ -38,12 +38,11 @@ Content-Type: application/json
 
 
 ###
-PATCH http://localhost:3000/api/v1/users/
+PATCH http://localhost:3000/api/v1/users/65716227564d8f751deaa496
 Content-Type: application/json
 
 {
-  "email": "TestingAdmin@newpaltz.edu",
-  "friends":[]
+ "role":"admin"
 }
 
 ###

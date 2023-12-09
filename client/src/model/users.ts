@@ -9,7 +9,6 @@ export interface User {
   password: string,
   _id: string,
   isAdmin: true 
-  
   token?: string
  workouts: Exercise[] 
   friends: String[]

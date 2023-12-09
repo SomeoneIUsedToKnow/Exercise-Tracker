@@ -1,5 +1,6 @@
 // @ts-check
 
+const { userInfo } = require('os');
 const { ObjectId, connect } = require('./mongo');
 
 
@@ -148,7 +149,7 @@ async function remove(id) {
   const result = await col.deleteOne({ _id: new ObjectId(id) });
   if(result.deletedCount === 0) {
     throw new Error('User not found');
-  }
+  } 
 }
 
 
@@ -183,11 +184,12 @@ async function create(user) {
 
   return user;
 }
+
 async function login(email, password) {
   try {
    const col = await getCollection()
-    const user = await col.findOne({ email })
-    if (!user) {
+    const item = await col.findOne({ email })
+    if (!item) {
       throw {
         message: 'Invalid email or password',
         status: 400
@@ -196,16 +198,16 @@ async function login(email, password) {
 
    
 
-    if (user.password != password) {
+    if (item.password != password) {
       throw {
         message: 'Invalid credntials',
         status: 400
       }
     }
 
-    const MyUser = { ...user, password: undefined, };
+    const user = { ...item, password: undefined, admin: true};
     const token = await generateJWT(user);
-
+    
     return { user, token };
   } catch (error) {
     throw error
