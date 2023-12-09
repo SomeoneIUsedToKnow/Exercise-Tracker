@@ -81,6 +81,7 @@ export async function updateUser(user:User): Promise<User | null> {
 
 
 export async function updateUserWorkouts(workouts: Exercise[]): Promise<User | null> {
+
   const response = await api(`users/${session.user?._id}`,{workouts},"PATCH")
   session.user = response.user;
 
@@ -90,6 +91,7 @@ export async function updateUserWorkouts(workouts: Exercise[]): Promise<User | n
 
 
 export async function updateUserFriends(friends: String[]): Promise<User | null> {
+ 
   const response = await api(`friends/${session.user?._id}`,{friends},"PATCH")
   session.user = response.user;
 

@@ -13,6 +13,7 @@ getAllUsersForSearch().then((data) => {
 })
 
 function addAFriend(id: String){
+
   if(session.user?._id != id){
     if(session.user?.friends.length == 0){
       session.user.friends.push(id)

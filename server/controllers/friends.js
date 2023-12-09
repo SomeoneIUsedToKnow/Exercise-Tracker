@@ -3,7 +3,7 @@
 */
 
 const express = require('express');
-const { getAll, AddWorkout, update, remove, search, get, create, login} = require('../models/users');
+const {  update} = require('../models/users');
 const router = express.Router();
 const { requireUser } = require('../middleware/authorization')
 
