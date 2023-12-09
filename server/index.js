@@ -5,6 +5,7 @@ const express = require('express');
 require('dotenv').config();
 const adminController = require('./controllers/admin');
 const userController = require('./controllers/users');
+const friendsController = require('./controllers/friends')
 const { parseAuthorizationToken, requireUser } = require('./middleware/authorization');
 const app = express();
 
@@ -31,7 +32,7 @@ app
 
     .use('/api/v1/admin', requireUser(), adminController)
     .use('/api/v1/users', userController)
-
+    .use('/api/v1/friends', requireUser(), friendsController)
     .get('*', (req, res) => {
         res.sendFile(path.join( __dirname, '../client/dist/index.html') )
     });

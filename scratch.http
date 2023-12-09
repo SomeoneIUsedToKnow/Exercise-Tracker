@@ -42,7 +42,8 @@ PATCH http://localhost:3000/api/v1/users/65716227564d8f751deaa496
 Content-Type: application/json
 
 {
- "role":"admin"
+  "isAdmin": false
+ 
 }
 
 ###
@@ -53,10 +54,30 @@ POST http://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
-  "email": "testdelete@newpaltz.edu",
-  "password": "12345678",
-  "isAdmin": true
-}
+ "email": "testingtheusers@newpaltz.edu",
+      "password": "12345678",
+      "isAdmin": true,
+      "FirstName": "Jeff",
+      "LastName": "jeffffffery",
+      "friends": [
+        "656de73f95df8dd474b00f4a",
+        "6570e20962778001b479e4cc"
+      ],
+      "workouts": [
+        {
+          "id": 0.0633,
+          "Distance": 1,
+          "Lat": "100",
+          "Long": "100",
+          "speed": 60,
+          "date": "100",
+          "time": "1"
+        }
+      ],
+      "userFriends":[{}]
+
+    }
+    
 
 ###
 POST http://localhost:3000/api/v1/users/login

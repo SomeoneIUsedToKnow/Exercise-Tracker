@@ -66,7 +66,7 @@ Pretty sure this is the same as create
 
 })
 
-.patch('/:id', (req, res, next) => {
+.patch('/:id',requireUser(), (req, res, next) => {
     
     req.body.id = req.params.id;
     update(req.body)

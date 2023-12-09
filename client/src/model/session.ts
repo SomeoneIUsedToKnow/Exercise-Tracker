@@ -2,7 +2,7 @@ import { reactive } from "vue";
 import { useRouter } from "vue-router"
 import { useToast } from "vue-toastification";
 import * as myFetch from "./myFetch";
-import { getUsers, type User } from "./users";
+import {  type User } from "./users";
 import type { Exercise } from "./exercise";
 
 const toast = useToast();
@@ -90,7 +90,7 @@ export async function updateUserWorkouts(workouts: Exercise[]): Promise<User | n
 
 
 export async function updateUserFriends(friends: String[]): Promise<User | null> {
-  const response = await api(`users/${session.user?._id}`,{friends},"PATCH")
+  const response = await api(`friends/${session.user?._id}`,{friends},"PATCH")
   session.user = response.user;
 
   return session.user;
