@@ -2,7 +2,7 @@ import { reactive } from "vue";
 import { useRouter } from "vue-router"
 import { useToast } from "vue-toastification";
 import * as myFetch from "./myFetch";
-import {type User } from "./users";
+import { getUsers, type User } from "./users";
 import type { Exercise } from "./exercise";
 
 const toast = useToast();
@@ -59,9 +59,9 @@ export async function admindeleteaUser(id: string): Promise<User[] | null>
 
 
   const response =await api("admin/");
- response.users;
-  
-  return response.users;
+  session.users = response.users;
+
+  return session.users;
 
 }
 export function showError(err: any){
