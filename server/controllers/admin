@@ -6,7 +6,7 @@ const router = express.Router();
 const { requireUser } = require('../middleware/authorization')
 
 router
-.patch('/:id', requireUser(true),(req, res, next) => {
+.patch('/:id', requireUser(),(req, res, next) => {
     
     req.body.id = req.params.id;
     update(req.body)

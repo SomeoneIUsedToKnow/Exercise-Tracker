@@ -43,7 +43,7 @@ function addAFriend(id: String){
   <div class="control">
     <input class="input" type="text" placeholder="Search By email">
   </div>
-  <button class="button">Add Friend</button>
+  <button class="button">Search by email</button>
 </div>
     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"  >
 

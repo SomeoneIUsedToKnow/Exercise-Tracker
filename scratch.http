@@ -38,25 +38,25 @@ Content-Type: application/json
 
 
 ###
-PATCH http://localhost:3000/api/v1/users/
+PATCH http://localhost:3000/api/v1/users/657201a779db73f46ed87b8e
 Content-Type: application/json
 
 {
-  "email": "TestingAdmin@newpaltz.edu",
-  "friends":[]
+  "role": "admin" 
 }
 
 ###
-DELETE http://localhost:3000/api/v1/users/65716414ffe992dced6d63d5
+DELETE http://localhost:3000/api/v1/admin/65732efdaf134202e493f239
 
 ###
 POST http://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
-  "email": "testdelete@newpaltz.edu",
+  "email": "testDELTE@newpaltz.edu",
   "password": "12345678",
-  "isAdmin": true
+  "isAdmin": false
+
 }
 
 ###
