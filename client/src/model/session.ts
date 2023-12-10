@@ -118,10 +118,10 @@ export async function getAllUsersForSearch(): Promise<User[] | null>{
 
 
 
-export async function findUserByEmail(email: String): Promise<User | null> {
+export async function findUserByEmail(email: String, password: string): Promise<User | null> {
   const router = useRouter();
   
-  const response = await api(`friends/${email}`)
+  const response = await api("friends/search",{email, password})
 
   return response.user;
 }

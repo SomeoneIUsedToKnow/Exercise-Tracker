@@ -6,23 +6,23 @@ import{ref} from 'vue'
 
 const session = getSession()
 const users = ref([] as User[])
-let searchUser !:User | null
+
+
+
 
 const EmailSearch = ref('')
 
 function findyAUserByEmail(){
-  let email:String = EmailSearch.value
-  searchUser = null
-  findUserByEmail(email).then((data) => {
-    if(data)
-    searchUser = data
-  })
-}
 
-getAllUsersForSearch().then((data) => {
-  if(data)
-  users.value = data
-})
+  let email:String = EmailSearch.value
+  users.value.pop()
+  findUserByEmail(email,"").then((data) => {
+    if(data){
+   users.value.push(data)
+    }
+  })
+  EmailSearch.value = ''
+}
 
 function addAFriend(id: String){
 
@@ -46,9 +46,6 @@ function addAFriend(id: String){
 }
 
 
-if(searchUser){
-  console.log(searchUser.email)
-}
 
 </script>
 
@@ -83,16 +80,16 @@ if(searchUser){
         </tr>
       </thead>
       <tbody>
-        <tr v-if="searchUser">
+        <tr v-if="users" v-for="variables in users">
           
           
-          <td>{{searchUser.FirstName}}</td>
-          <td>{{searchUser.LastName}}</td>
-          <td>{{searchUser.email}}</td>
-          <td>{{searchUser.isAdmin}}</td>
+          <td>{{variables.FirstName}}</td>
+          <td>{{variables.LastName}}</td>
+          <td>{{variables.email}}</td>
+          <td>{{variables.isAdmin}}</td>
           <td>
           
-              <button class="button" @click="addAFriend(searchUser._id)">Add Friend</button>
+              <button class="button" @click="addAFriend(variables._id)">Add Friend</button>
            
             </td>
         </tr>

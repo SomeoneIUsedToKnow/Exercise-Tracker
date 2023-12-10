@@ -47,15 +47,7 @@ router.get('/', (req, res, next) => {
     }).catch(next);
 
 })
-/*
 
-Pretty sure this is the same as create
-.post('/register', (req, res, next) => {
-
-    const user = register(req.body);
-    res.send(user);
-
-}) */
 .post('/login',  (req, res, next) => {
 
         const { email, password } = req.body;
