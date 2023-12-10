@@ -117,8 +117,28 @@ async function getCollectionProducts() {
 
 
 
+async function findByEmail(email, password) {
+  try {
+   const col = await getCollection()
+    const item = await col.findOne({ email })
+    if (!item) {
+      throw {
+        message: 'Invalid email or password',
+        status: 400
+      }
+    }
 
+   
 
+    const user = item
+   
+    
+    return { user};
+  } catch (error) {
+    throw error
+
+  }
+}
 
 async function AddWorkout(user) {
  
@@ -242,5 +262,5 @@ function verifyJWT(token) {
 
 
 module.exports = {
-  getAll, update, AddWorkout, remove, search, get, create, login, verifyJWT
+  getAll, update, AddWorkout, remove, search, get, create, login, verifyJWT, findByEmail
 };

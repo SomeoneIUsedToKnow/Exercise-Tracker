@@ -103,9 +103,6 @@ export async function updateUserFriends(friends: String[]): Promise<User | null>
 export async function getAllUsersForUserView(): Promise<User[] | null>{
  
   const response = await api("users/");
- 
-
-  
   return response.users;
   
 }
@@ -120,6 +117,14 @@ export async function getAllUsersForSearch(): Promise<User[] | null>{
 }
 
 
+
+export async function findUserByEmail(email: String): Promise<User | null> {
+  const router = useRouter();
+  
+  const response = await api(`friends/${email}`)
+
+  return response.user;
+}
 
 
   export async function getuser(id: String): Promise<User | null> {

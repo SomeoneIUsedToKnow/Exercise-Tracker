@@ -1,11 +1,23 @@
 <script setup lang="ts">
 import type { User } from '@/model/users';
-import { getuser,getSession, getAllUsersForSearch,updateUserFriends } from '@/model/session';
+import { getuser,getSession, getAllUsersForSearch,updateUserFriends, findUserByEmail } from '@/model/session';
 import{ref} from 'vue'
 
 
 const session = getSession()
 const users = ref([] as User[])
+let searchUser !:User | null
+
+const EmailSearch = ref('')
+
+function findyAUserByEmail(){
+  let email:String = EmailSearch.value
+  searchUser = null
+  findUserByEmail(email).then((data) => {
+    if(data)
+    searchUser = data
+  })
+}
 
 getAllUsersForSearch().then((data) => {
   if(data)
@@ -34,7 +46,9 @@ function addAFriend(id: String){
 }
 
 
-
+if(searchUser){
+  console.log(searchUser.email)
+}
 
 </script>
 
@@ -42,9 +56,9 @@ function addAFriend(id: String){
   <!-- Basic admin page no real data here whatsoever until users can be added -->
   <div class="field">
   <div class="control">
-    <input class="input" type="text" placeholder="Search By email">
+    <input class="input" type="text" placeholder="Search By email"  v-model="EmailSearch">
   </div>
-  <button class="button">Add Friend</button>
+  <button class="button"  @click="findyAUserByEmail">Search by email</button>
 </div>
     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"  >
 
@@ -69,16 +83,16 @@ function addAFriend(id: String){
         </tr>
       </thead>
       <tbody>
-        <tr v-for="user in users">
+        <tr v-if="searchUser">
           
           
-          <td>{{user.FirstName}}</td>
-          <td>{{user.LastName}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.isAdmin}}</td>
+          <td>{{searchUser.FirstName}}</td>
+          <td>{{searchUser.LastName}}</td>
+          <td>{{searchUser.email}}</td>
+          <td>{{searchUser.isAdmin}}</td>
           <td>
           
-              <button class="button" @click="addAFriend(user._id)">Add Friend</button>
+              <button class="button" @click="addAFriend(searchUser._id)">Add Friend</button>
            
             </td>
         </tr>

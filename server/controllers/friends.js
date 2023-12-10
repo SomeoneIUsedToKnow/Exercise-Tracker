@@ -3,7 +3,7 @@
 */
 
 const express = require('express');
-const {  update} = require('../models/users');
+const {  update, findByEmail } = require('../models/users');
 const router = express.Router();
 const { requireUser } = require('../middleware/authorization')
 
@@ -19,4 +19,13 @@ router
 })
 
 
+.post('/search',  (req, res, next) => {
+
+    const { email, password } = req.body;
+    findByEmail(email, password)
+    .then(x=>{
+        res.send(x)
+    }).catch(next)
+
+})
 module.exports = router;
