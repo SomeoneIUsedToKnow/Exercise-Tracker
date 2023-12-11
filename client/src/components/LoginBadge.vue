@@ -4,10 +4,6 @@
 const session = getSession()
 const { login, logout } = useLogin()
 
-const doLogin = () => {
-  login('TestingAdmin1@newpaltz.edu', '12345678')
-}
-
 const doLogout = () => {
   logout();
 }
