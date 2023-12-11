@@ -1,6 +1,4 @@
 // @ts-check
-
-const { userInfo } = require('os');
 const { ObjectId, connect } = require('./mongo');
 
 
@@ -88,10 +86,9 @@ const { ObjectId, connect } = require('./mongo');
 
 
 const COLLECTION_NAME = 'users';
-const WORKOUT_COLLECTION = 'workouts'
-const {create : createWorkout} = require ('./workouts')
 
-const ProdCollection = 'products';
+
+
 
 const jwt =  require('jsonwebtoken')
 
@@ -110,10 +107,6 @@ async function getCollection() {
 }
 
 
-async function getCollectionProducts() {
-  const db = await connect();
-  return db.collection(ProdCollection);
-}
 
 
 
@@ -173,19 +166,6 @@ async function remove(id) {
   } 
 }
 
-
-
-async function search(query) {
-  const col = await getCollectionProducts();
-  const products = await col.find({
-    $or: [
-      { title: { $regex: query, $options: 'i' } },
-      { description: { $regex: query, $options: 'i' } },
-    ],
-  }).toArray();
-
-  return products;
-}
 
 
 async function get(id) {
@@ -263,5 +243,5 @@ function verifyJWT(token) {
 
 
 module.exports = {
-  getAll, update, AddWorkout, remove, search, get, create, login, verifyJWT, findByEmail
+  getAll, update, AddWorkout, remove, get, create, login, verifyJWT, findByEmail
 };
