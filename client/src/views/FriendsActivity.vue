@@ -1,20 +1,18 @@
 <script setup lang="ts">
 import type { User } from '@/model/users';
-import { getuser,getSession, getAllUsersForUserView, deleteaUser, useLogin } from '@/model/session';
+import { getuser,getSession, getAllUsersForUserView, deleteaUser,findUserByEmail, useLogin,updateUserFriends } from '@/model/session';
 import { ref } from 'vue'
+import type { Exercise } from '@/model/exercise';
 /*
 let session = getSession()
 getAllUsersForUserView();
 */
-function Delete(id: string): void {
-  deleteaUser(id);
- 
-getAllUsersForUserView().then((data) => {
-  if(data)
-  users.value = data
-})
-  
-}
+let exerciseStructure: Exercise 
+
+let session = getSession();
+
+let myFriends = ref([] as User[])
+
   
 let users = ref([] as User[])
 
@@ -23,13 +21,42 @@ getAllUsersForUserView().then((data) => {
   users.value = data
 })
 
+if(session.user){
+
+    for(let i = 0 ; i < session.user.friends.length; i++){
+    findUserByEmail(session.user.friends[i], '').then((data) => {
+  if(data){
+    if(data.workouts){
+      myFriends.value.push(data)
+    }
+  }
+  
+})
+  }
+}
+
+
+
+function RemoveFriend(email: string){
+  if(session.user)
+  for(let i = 0 ; i < session.user?.friends.length; i++){
+      if(session.user.friends[i] == email){
+        session.user.friends.splice(i,1)
+      }
+      updateUserFriends(session.user.friends)
+      
+  }
+    
+}
+
+
 
 </script>
 
 <template>
   <main class="columns is-multiline is-centered">
     <div class="column is-full">
-      <h1 class="title" >My Activity</h1>
+      <h1 class="title" >Friends Most Recent Activity</h1>
       
     </div>
 
@@ -38,15 +65,16 @@ getAllUsersForUserView().then((data) => {
         <p class="panel-heading">
         Friends Runs
         </p>     
-        <label class="box" v-for="variable in users">
-         
-          <p>Ran For: {{ variable.FirstName }}min   
-             <br>Distance Ran: {{variable.FirstName}}miles
-             <br>Latitude: {{variable.FirstName}}
-             <br>Longitude: {{variable.FirstName}}
-             <br>Date: {{ variable.FirstName }}
-              <br>Average Speed: {{ variable.FirstName }} miles per hour</p>
-              <button  @click="Delete(variable.FirstName)" >Delete</button>
+        <label class="box" v-for="variable in myFriends">
+      
+          <p>Email: {{ variable.email }}
+            <br>Ran For: {{ variable.workouts[0].time }}min   
+             <br>Distance Ran: {{ variable.workouts[0].Distance }}miles
+             <br>Latitude: {{ variable.workouts[0].Lat }}
+             <br>Longitude:  {{ variable.workouts[0].Long }}
+             <br>Date:  {{ variable.workouts[0].date }}
+              <br>Average Speed:  {{ variable.workouts[0].speed }} miles per hour</p>
+              <button  @click="RemoveFriend(variable.email)" >Remove Friend</button>
         </label>
        
       </div>

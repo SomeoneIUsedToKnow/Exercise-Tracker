@@ -10,8 +10,6 @@ const toast = useToast();
 const session = reactive({
   user: null as User | null,
   token: null as string | null,
-  users: null as User[] | null,
-  randomuser: null as User | null,
   redirectUrl: null as string | null,
   messages: [] as {
     type: string,
@@ -45,9 +43,9 @@ export async function deleteaUser(id: string): Promise<User[] | null>
 
 
   const response =await api("users/");
-  session.users = response.users;
+ 
   router.push(session.redirectUrl || "/users");
-  return session.users;
+  return response.users;
 
 }
 
@@ -59,9 +57,9 @@ export async function admindeleteaUser(id: string): Promise<User[] | null>
 
 
   const response =await api("admin/");
-  session.users = response.users;
+ 
 
-  return session.users;
+  return response.users;
 
 }
 export function showError(err: any){
@@ -99,12 +97,14 @@ export async function updateUserWorkouts(workouts: Exercise[]): Promise<User | n
 }
 
 
+
+
 export async function updateUserFriends(friends: String[]): Promise<User | null> {
  
   const response = await api(`friends/${session.user?._id}`,{friends},"PATCH")
-  session.user = response.user;
 
-  return session.user;
+
+  return response.user;
   
 }
 
@@ -118,7 +118,7 @@ export async function getAllUsersForUserView(): Promise<User[] | null>{
 
 export async function getAllUsersForSearch(): Promise<User[] | null>{
   const response =await api("users/");
-  session.users = response.users;
+  
 
  
   return response.users;
@@ -141,10 +141,23 @@ export async function findUserByEmail(email: String, password: string): Promise<
 
     const response = await api(`users/${id}`)
 
-    session.randomuser = response.user;
-   
+  
+    
     return response.user;
   }
+
+
+  export async function createUser(user: any): Promise<User | null> {
+    const router = useRouter();
+
+    const response = await api("users/",user, "POST")
+    
+
+    return response.user
+  }
+
+
+
 
 export function useLogin(){
   const router = useRouter();

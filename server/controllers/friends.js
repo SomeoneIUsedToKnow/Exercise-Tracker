@@ -19,7 +19,7 @@ router
 })
 
 
-.post('/search', requireUser(), (req, res, next) => {
+.post('/search', (req, res, next) => {
 
     const { email, password } = req.body;
     findByEmail(email, password)

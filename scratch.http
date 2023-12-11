@@ -3,12 +3,9 @@
 // Users
 
 ###
-POST http://localhost:3000/api/v1/friends/search
+GET http://localhost:3000/api/v1/users
 Content-Type: application/json
 
-{
-  "email":"testingtheusers@newpaltz.edu"
-}
 ###
 POST  http://localhost:3000/api/v1/users/
 Content-Type: application/json
@@ -42,11 +39,11 @@ Content-Type: application/json
 
 
 ###
-PATCH http://localhost:3000/api/v1/users/65716227564d8f751deaa496
+PATCH http://localhost:3000/api/v1/users/65769eafdbbbabade6769953
 Content-Type: application/json
 
 {
-  "isAdmin": false
+  "workouts": [{}]
  
 }
 
@@ -94,14 +91,14 @@ Content-Type: application/json
 }
 
 ###
-GET   http://localhost:3000/api/v1/users/search
+POST   http://localhost:3000/api/v1/friends/search
 
 Content-Type: application/json
 
 {
   
 
- "email":"plotkinm@newpaltz.edu"
+ "email":"testing"
   
  }
   

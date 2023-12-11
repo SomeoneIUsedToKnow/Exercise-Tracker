@@ -6,8 +6,7 @@ import type { Exercise } from '@/model/exercise';
 
 
 const isActive = ref(false);
-let myuser!: User
-const editableUser = ref(myuser)
+let myuser!: User 
 
 
 function Delete(id: string): void {

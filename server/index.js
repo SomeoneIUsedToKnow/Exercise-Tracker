@@ -32,7 +32,7 @@ app
 
     .use('/api/v1/admin', requireUser(), adminController)
     .use('/api/v1/users', userController)
-    .use('/api/v1/friends',requireUser(),friendsController)
+    .use('/api/v1/friends',friendsController)
     .get('*', (req, res) => {
         res.sendFile(path.join( __dirname, '../client/dist/index.html') )
     });

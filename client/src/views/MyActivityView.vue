@@ -57,6 +57,10 @@ let continueId: number
   };
    
   if(session.user){
+
+    if(!exercise.Distance || !exercise.Lat || !exercise.Long || !exercise.date ||!exercise.speed ||!exercise.time){
+      throw new Error('No fields can be empty')
+    }
     session.user.workouts.push(exercise);
     updateUserWorkouts(session.user.workouts)
   }

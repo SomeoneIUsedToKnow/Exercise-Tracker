@@ -58,19 +58,10 @@ router.get('/', (req, res, next) => {
 
 })
 
-.patch('/:id',requireUser(), (req, res, next) => {
+.patch('/:id', (req, res, next) => {
     
     req.body.id = req.params.id;
     update(req.body)
-    .then((user) => {
-        res.send(user);
-    }).catch(next);
-
-})
-.patch('/addWorkout', (req, res, next) => {
-    
-    
-    AddWorkout(req.body)
     .then((user) => {
         res.send(user);
     }).catch(next);

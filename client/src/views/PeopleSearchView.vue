@@ -24,21 +24,21 @@ function findyAUserByEmail(){
   EmailSearch.value = ''
 }
 
-function addAFriend(id: String){
+function addAFriend(email: String){
 
-  if(session.user?._id != id){
+  if(session.user?.email != email){
     if(session.user?.friends.length == 0){
-      session.user.friends.push(id)
+      session.user.friends.push(email)
       updateUserFriends(session.user.friends)
 
     }else {
     if(session.user){
       for(let i = 0; i < session.user.friends.length; i++){
-        if(session.user.friends[i] == id){
+        if(session.user.friends[i] == email){
           return;
         }
       }
-      session.user?.friends.push(id)
+      session.user?.friends.push(email)
     updateUserFriends(session.user?.friends)
     }
 }
@@ -89,7 +89,7 @@ function addAFriend(id: String){
           <td>{{variables.isAdmin}}</td>
           <td>
           
-              <button class="button" @click="addAFriend(variables._id)">Add Friend</button>
+              <button class="button" @click="addAFriend(variables.email)">Add Friend</button>
            
             </td>
         </tr>
