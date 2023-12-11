@@ -32,7 +32,6 @@ const isActive = ref(false);
         <RouterLink class="navbar-item" to="/friendsactivity">Friends Activity</RouterLink>
         <RouterLink class="navbar-item" to="/peoplesearch">People Search</RouterLink>
       
-      
 
        
       <div class="navbar-item has-dropdown is-hoverable" v-if="session.user?.isAdmin">

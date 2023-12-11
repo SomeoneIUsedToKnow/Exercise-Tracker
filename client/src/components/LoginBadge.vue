@@ -4,10 +4,6 @@
 const session = getSession()
 const { login, logout } = useLogin()
 
-const doLogin = () => {
-  login('TestingAdmin1@newpaltz.edu', '12345678')
-}
-
 const doLogout = () => {
   logout();
 }
@@ -28,10 +24,10 @@ const doLogout = () => {
 </div>
 <div class="buttons" v-else>
   <a class="button is-primary">
-    <RouterLink class="navbar-item" to="/SignUp"> <strong>Sign up</strong></RouterLink>
+    <RouterLink to="/SignUp"> <strong>Sign up</strong></RouterLink>
   </a>
-  <a class="button is-light" @click.prevent="doLogin">
-    Log in
+  <a class="button is-light">
+    <RouterLink to="/Login">Login</RouterLink>
   </a>
 </div>
 </template>
