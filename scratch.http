@@ -39,11 +39,11 @@ Content-Type: application/json
 
 
 ###
-PATCH http://localhost:3000/api/v1/users/65769eafdbbbabade6769953
+PATCH http://localhost:3000/api/v1/users/657201a779db73f46ed87b8e
 Content-Type: application/json
 
 {
-  "workouts": [{}]
+  "friends": []
  
 }
 
