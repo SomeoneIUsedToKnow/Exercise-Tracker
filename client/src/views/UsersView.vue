@@ -8,6 +8,7 @@ import type { Exercise } from '@/model/exercise';
 const isActive = ref(false);
 let myuser!: User 
 
+let users = ref([] as User[])
 
 function Delete(id: string): void {
   admindeleteaUser(id);
@@ -18,8 +19,7 @@ getAllUsersForUserView().then((data) => {
 })
   
 }
-  
-let users = ref([] as User[])
+
 
 getAllUsersForUserView().then((data) => {
   if(data)
@@ -51,7 +51,7 @@ function editUser(user: User){
 
  adminUpdateUser(editedUser, user)
 
-console.log(editedUser.FirstName)
+
 }
 
 </script>
