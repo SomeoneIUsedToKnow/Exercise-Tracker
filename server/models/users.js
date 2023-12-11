@@ -86,6 +86,7 @@ const { ObjectId, connect } = require('./mongo');
  * @returns {User[]} An array of products.
  */
 
+
 const COLLECTION_NAME = 'users';
 const WORKOUT_COLLECTION = 'workouts'
 const {create : createWorkout} = require ('./workouts')

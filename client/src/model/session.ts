@@ -80,6 +80,15 @@ export async function updateUser(user:User): Promise<User | null> {
 }
 
 
+export async function adminUpdateUser(user:any, realuser: User) {
+  const response = await api(`admin/${realuser._id}`,user,"PATCH")
+  
+
+  return response.user;
+  
+}
+
+
 export async function updateUserWorkouts(workouts: Exercise[]): Promise<User | null> {
 
   const response = await api(`users/${session.user?._id}`,{workouts},"PATCH")

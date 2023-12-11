@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import type { User } from '@/model/users';
-import { getuser,getSession, getAllUsersForUserView, deleteaUser, useLogin, admindeleteaUser } from '@/model/session';
+import { getuser,getSession, getAllUsersForUserView, deleteaUser, useLogin, admindeleteaUser, adminUpdateUser } from '@/model/session';
 import { ref } from 'vue'
-/*
-let session = getSession()
-getAllUsersForUserView();
-*/
+import type { Exercise } from '@/model/exercise';
+
+
+const isActive = ref(false);
+let myuser!: User
+const editableUser = ref(myuser)
+
+
 function Delete(id: string): void {
   admindeleteaUser(id);
  
@@ -22,13 +26,42 @@ getAllUsersForUserView().then((data) => {
   if(data)
   users.value = data
 })
+interface updatedUser {
+  
+  FirstName: string,
+  LastName: string,
+  email: string,
+  password: string,
+  isAdmin: true ,
 
+ 
+}
+
+function editUser(user: User){
+  
+ let editedUser: updatedUser;
+
+ editedUser = {
+  
+  FirstName: user.FirstName,
+  LastName: user.LastName,
+  email: user.email,
+  password: user.password,
+  isAdmin: user.isAdmin,
+ }
+
+ adminUpdateUser(editedUser, user)
+
+console.log(editedUser.FirstName)
+}
 
 </script>
 
 <template>
-  <!-- Basic admin page no real data here whatsoever until users can be added -->
-
+  
+<main>
+  
+  
     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"  >
 
       <thead>
@@ -63,13 +96,46 @@ getAllUsersForUserView().then((data) => {
           
              
               <button class="button" @click="Delete(user._id)" >Delete</button>
-             
+              <button class="button" @click="isActive = !isActive; myuser = user">Edit</button>
             </td>
         </tr>
 
       </tbody>
     </table>
-
+    <div v-if="isActive">
+      <div class="panel-block">
+          <p class="control has-icons-left">
+            <input  class="input" type="text" placeholder="First Name" v-model="myuser.FirstName"
+                   >
+            <span class="icon is-left">
+              <i class="fas fa-plus" aria-hidden="true"></i>
+            </span>
+            <input  class="input" type="text" placeholder="Last Name" v-model="myuser.LastName"
+                  >
+            <span class="icon is-left">
+              <i class="fas fa-plus" aria-hidden="true"></i>
+            </span>
+            <input  class="input" type="text" placeholder="Email" v-model="myuser.email"
+                   >
+            <span class="icon is-left">
+              <i class="fas fa-plus" aria-hidden="true"></i>
+            </span>
+            <input  class="input" type="text" placeholder="Password" v-model="myuser.password"
+                    >
+            <span class="icon is-left">
+              <i class="fas fa-plus" aria-hidden="true"></i>
+            </span>
+            <input  class="input" type="text" placeholder="admin? (true or false)" v-model="myuser.isAdmin"
+                    >
+            <span class="icon is-left">
+              <i class="fas fa-plus" aria-hidden="true"></i>
+            </span>
+          </p>
+        </div>
+        <button class="button" @click="isActive = !isActive">cancel</button>
+        <button class="button" @click="isActive = !isActive; editUser(myuser)">Edit User</button>
+    </div>
+</main>
 </template>
 
 <script setup lang="ts">
