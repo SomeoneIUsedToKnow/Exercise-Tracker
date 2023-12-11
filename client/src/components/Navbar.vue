@@ -30,8 +30,8 @@ const isActive = ref(false);
         <RouterLink class="navbar-item" to="/myactivity">My Activity</RouterLink>
         <RouterLink class="navbar-item" to="/statistics">Statistics</RouterLink>
         <RouterLink class="navbar-item" to="/friendsactivity">Friends Activity</RouterLink>
+        <RouterLink class="navbar-item" to="/friendslist">My friends</RouterLink>
         <RouterLink class="navbar-item" to="/peoplesearch">People Search</RouterLink>
-      
       
 
        

@@ -51,7 +51,6 @@ function editUser(user: User){
 
  adminUpdateUser(editedUser, user)
 
-console.log(editedUser.FirstName)
 }
 
 </script>
