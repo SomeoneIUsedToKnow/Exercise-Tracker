@@ -3,7 +3,7 @@
 */
 
 const express = require('express');
-const { getAll, AddWorkout, update, remove, get, create, login} = require('../models/users');
+const { getAll, AddWorkout, update, remove, get, create, login,search} = require('../models/users');
 const router = express.Router();
 const { requireUser } = require('../middleware/authorization')
 
@@ -67,8 +67,13 @@ router.get('/', (req, res, next) => {
 
 })
 
-/*
-insert search here
-*/
+.get('/search' , (req, res, next) => {
+
+    search(req.query.q)
+    .then((results) => {
+        res.send(results);
+    }).catch(next);
+
+})
 
 module.exports = router;
