@@ -146,6 +146,17 @@ export async function findUserByEmail(email: String, password: string): Promise<
     return response.user;
   }
 
+  
+  export async function searchUser(query: String): Promise<User[] | null> {
+    const router = useRouter();
+
+    const response = await api(`users/search`,query)
+
+  
+    
+    return response.users;
+  }
+
 
   export async function createUser(user: any): Promise<User | null> {
     const router = useRouter();

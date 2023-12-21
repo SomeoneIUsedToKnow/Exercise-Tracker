@@ -30,7 +30,7 @@ app
 
     .use(parseAuthorizationToken)
 
-    .use('/api/v1/admin', requireUser(), adminController)
+    .use('/api/v1/admin', requireUser(true), adminController)
     .use('/api/v1/users', userController)
     .use('/api/v1/friends', requireUser(),friendsController)
     .get('*', (req, res) => {

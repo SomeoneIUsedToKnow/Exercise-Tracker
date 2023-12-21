@@ -240,8 +240,19 @@ function verifyJWT(token) {
   })
 }
 
+async function search(query) {
+  const col = await getCollection();
+  const users = await col.find({
+    $or: [
+      { email: { $regex: query, $options: '.' } },
+      { firstName: { $regex: query, $options: '.' } },
+    ],
+  }).toArray();
+
+  return users;
+}
 
 
 module.exports = {
-  getAll, update, AddWorkout, remove, get, create, login, verifyJWT, findByEmail
+  getAll, update, AddWorkout, remove, get, create, login, verifyJWT, findByEmail, search
 };
