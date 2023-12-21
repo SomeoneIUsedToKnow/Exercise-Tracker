@@ -12,7 +12,7 @@ const isFetching = ref(false);
 const page = ref(1);
 const totalPages = ref(1);
 
-const data = ref([]);
+const data = ref<any[]>([]);
 const selected = ref(null);
 const name = ref("");
 
@@ -139,7 +139,7 @@ function addAFriend(email: String){
             open-on-focus
             :debounce="500"
             @input="getAsyncData"
-            @select="(option) => (selected = option)"
+            @select="(option: any) => (selected = option)"
             @scroll-end="getMoreAsyncData">
             <template #default="props">
                 <div class="media">
